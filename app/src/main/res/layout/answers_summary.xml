@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Answers summary image -->
+        <com.makeramen.roundedimageview.RoundedImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/answers_summary_image"
+            style="@style/AnswersSummaryImage"
+            android:layout_alignParentTop="true"
+            app:riv_corner_radius="@dimen/standardSpacing"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_alignParentTop="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/winner_info"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:padding="16dp"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:textAllCaps="true"
+                android:text="There is a tie."
+                android:textColor="#FFF" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:id="@+id/player_1_score_container"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="8dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/player_1_score_label"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="Player 1 Score:"
+                        android:textAllCaps="true"
+                        android:paddingRight="8dp"
+                        android:textColor="#FFF" />
+                    <TextView
+                        android:id="@+id/player_1_points"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:text="0"
+                        android:textColor="#FFF" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/player_2_score_container"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="16dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/player_2_score_label"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="Player 2 Score:"
+                        android:textAllCaps="true"
+                        android:paddingRight="8dp"
+                        android:textColor="#FFF" />
+                    <TextView
+                        android:id="@+id/player_2_points"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:text="0"
+                        android:textColor="#FFF" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/question_expand_button_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#CD666666"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:textStyle="bold"
+                    android:elevation="6dp"
+                    android:gravity="center"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:text="Question 1"
+                    android:textColor="#FFF" />
+
+                <net.cachapa.expandablelayout.ExpandableLayout
+                    android:id="@+id/question_answers_summary_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="-8dp"
+                    android:layout_marginBottom="8dp"
+                    app:el_duration="500"
+                    app:el_expanded="false">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/summary_all_answered_answers_1_wrapper"
+                            android:layout_width="match_parent"
+                            android:background="#CDDDDDDD"
+                            android:clipToPadding="false"
+                            android:elevation="4dp"
+                            android:padding="16dp"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:text="Correct Answer:"
+                                android:paddingRight="8dp"
+                                android:textColor="#222" />
+                            <TextView
+                                android:id="@+id/summary_all_answered_answers_1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Answer"
+                                android:textColor="#222" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/summary_player_answers_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/summary_all_answered_answers_1_wrapper"
+                            android:background="#CDFFFFFF"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+                                <!-- Player 1 Correct/Wrong Answer Indicator image -->
+                                <ImageView
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/answer_indicator_1_player_1"
+                                    style="@style/AnswerIndicatorImage"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"/>
+
+                                <LinearLayout
+                                    android:id="@+id/summary_answer_1_player_1_wrapper"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginRight="8dp">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:text="Player 1 answer:"
+                                        android:paddingBottom="4dp"
+                                        android:paddingRight="8dp"
+                                        android:textColor="#222" />
+                                    <TextView
+                                        android:id="@+id/summary_answer_1_player_1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Player 1 answer"
+                                        android:paddingBottom="8dp"
+                                        android:textColor="#222"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+                                <!-- Player 2 Correct/Wrong Answer Indicator image -->
+                                <ImageView
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/answer_indicator_1_player_2"
+                                    style="@style/AnswerIndicatorImage"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"/>
+
+                                <LinearLayout
+                                    android:id="@+id/summary_answer_1_player_2_wrapper"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginRight="8dp">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:text="Player 2 answer:"
+                                        android:paddingBottom="4dp"
+                                        android:paddingRight="8dp"
+                                        android:textColor="#222" />
+                                    <TextView
+                                        android:id="@+id/summary_answer_1_player_2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Player 2 answer"
+                                        android:paddingBottom="8dp"
+                                        android:textColor="#222"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </net.cachapa.expandablelayout.ExpandableLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/question_expand_button_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#CD666666"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:textStyle="bold"
+                    android:elevation="6dp"
+                    android:gravity="center"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:text="Question 2"
+                    android:textColor="#FFF" />
+
+                <net.cachapa.expandablelayout.ExpandableLayout
+                    android:id="@+id/question_answers_summary_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="-8dp"
+                    android:layout_marginBottom="8dp"
+                    app:el_duration="500"
+                    app:el_expanded="false">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/summary_all_answered_answers_2_wrapper"
+                            android:layout_width="match_parent"
+                            android:background="#CDDDDDDD"
+                            android:clipToPadding="false"
+                            android:elevation="4dp"
+                            android:padding="16dp"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:text="Correct Answer:"
+                                android:paddingRight="8dp"
+                                android:textColor="#222" />
+                            <TextView
+                                android:id="@+id/summary_all_answered_answers_2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Answer"
+                                android:textColor="#222" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/summary_player_answers_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/summary_all_answered_answers_2_wrapper"
+                            android:background="#CDFFFFFF"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+                                <!-- Player 1 Correct/Wrong Answer Indicator image -->
+                                <ImageView
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/answer_indicator_2_player_1"
+                                    style="@style/AnswerIndicatorImage"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"/>
+
+                                <LinearLayout
+                                    android:id="@+id/summary_answer_2_player_1_wrapper"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginRight="8dp">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:text="Player 1 answer:"
+                                        android:paddingBottom="4dp"
+                                        android:paddingRight="8dp"
+                                        android:textColor="#222" />
+                                    <TextView
+                                        android:id="@+id/summary_answer_2_player_1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Player 1 answer"
+                                        android:paddingBottom="8dp"
+                                        android:textColor="#222"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+                                <!-- Player 2 Correct/Wrong Answer Indicator image -->
+                                <ImageView
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/answer_indicator_2_player_2"
+                                    style="@style/AnswerIndicatorImage"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"/>
+
+                                <LinearLayout
+                                    android:id="@+id/summary_answer_2_player_2_wrapper"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginRight="8dp">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:text="Player 2 answer:"
+                                        android:paddingBottom="4dp"
+                                        android:paddingRight="8dp"
+                                        android:textColor="#222" />
+                                    <TextView
+                                        android:id="@+id/summary_answer_2_player_2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Player 2 answer"
+                                        android:paddingBottom="8dp"
+                                        android:textColor="#222"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </net.cachapa.expandablelayout.ExpandableLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/question_expand_button_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#CD666666"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:textStyle="bold"
+                    android:elevation="6dp"
+                    android:gravity="center"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:text="Question 3"
+                    android:textColor="#FFF" />
+
+                <net.cachapa.expandablelayout.ExpandableLayout
+                    android:id="@+id/question_answers_summary_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="-8dp"
+                    android:layout_marginBottom="8dp"
+                    app:el_duration="500"
+                    app:el_expanded="false">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/summary_all_answered_answers_3_wrapper"
+                            android:layout_width="match_parent"
+                            android:background="#CDDDDDDD"
+                            android:clipToPadding="false"
+                            android:elevation="4dp"
+                            android:padding="16dp"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:text="Correct Answer:"
+                                android:paddingRight="8dp"
+                                android:textColor="#222" />
+                            <TextView
+                                android:id="@+id/summary_all_answered_answers_3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Answer"
+                                android:textColor="#222" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/summary_player_answers_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/summary_all_answered_answers_3_wrapper"
+                            android:background="#CDFFFFFF"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+                                <!-- Player 1 Correct/Wrong Answer Indicator image -->
+                                <ImageView
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/answer_indicator_3_player_1"
+                                    style="@style/AnswerIndicatorImage"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"/>
+
+                                <LinearLayout
+                                    android:id="@+id/summary_answer_3_player_1_wrapper"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginRight="8dp">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:text="Player 1 answer:"
+                                        android:paddingBottom="4dp"
+                                        android:paddingRight="8dp"
+                                        android:textColor="#222" />
+                                    <TextView
+                                        android:id="@+id/summary_answer_3_player_1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Player 1 answer"
+                                        android:paddingBottom="8dp"
+                                        android:textColor="#222"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+                                <!-- Player 2 Correct/Wrong Answer Indicator image -->
+                                <ImageView
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/answer_indicator_3_player_2"
+                                    style="@style/AnswerIndicatorImage"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"/>
+
+                                <LinearLayout
+                                    android:id="@+id/summary_answer_3_player_2_wrapper"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginRight="8dp">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:text="Player 2 answer:"
+                                        android:paddingBottom="4dp"
+                                        android:paddingRight="8dp"
+                                        android:textColor="#222" />
+                                    <TextView
+                                        android:id="@+id/summary_answer_3_player_2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Player 2 answer"
+                                        android:paddingBottom="8dp"
+                                        android:textColor="#222"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </net.cachapa.expandablelayout.ExpandableLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/question_expand_button_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#CD666666"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:textStyle="bold"
+                    android:elevation="6dp"
+                    android:gravity="center"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:text="Question 4"
+                    android:textColor="#FFF" />
+
+                <net.cachapa.expandablelayout.ExpandableLayout
+                    android:id="@+id/question_answers_summary_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="-8dp"
+                    android:layout_marginBottom="8dp"
+                    app:el_duration="500"
+                    app:el_expanded="false">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/summary_all_answered_answers_4_wrapper"
+                            android:layout_width="match_parent"
+                            android:background="#CDDDDDDD"
+                            android:clipToPadding="false"
+                            android:elevation="4dp"
+                            android:padding="16dp"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:text="Correct Answer:"
+                                android:paddingRight="8dp"
+                                android:textColor="#222" />
+                            <TextView
+                                android:id="@+id/summary_all_answered_answers_4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Answer"
+                                android:textColor="#222" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/summary_player_answers_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/summary_all_answered_answers_4_wrapper"
+                            android:background="#CDFFFFFF"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+                                <!-- Player 1 Correct/Wrong Answer Indicator image -->
+                                <ImageView
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/answer_indicator_4_player_1"
+                                    style="@style/AnswerIndicatorImage"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"/>
+
+                                <LinearLayout
+                                    android:id="@+id/summary_answer_4_player_1_wrapper"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginRight="8dp">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:text="Player 1 answer:"
+                                        android:paddingBottom="4dp"
+                                        android:paddingRight="8dp"
+                                        android:textColor="#222" />
+                                    <TextView
+                                        android:id="@+id/summary_answer_4_player_1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Player 1 answer"
+                                        android:paddingBottom="8dp"
+                                        android:textColor="#222"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+                                <!-- Player 2 Correct/Wrong Answer Indicator image -->
+                                <ImageView
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/answer_indicator_4_player_2"
+                                    style="@style/AnswerIndicatorImage"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"/>
+
+                                <LinearLayout
+                                    android:id="@+id/summary_answer_4_player_2_wrapper"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginRight="8dp">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:text="Player 2 answer:"
+                                        android:paddingBottom="4dp"
+                                        android:paddingRight="8dp"
+                                        android:textColor="#222" />
+                                    <TextView
+                                        android:id="@+id/summary_answer_4_player_2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Player 2 answer"
+                                        android:paddingBottom="8dp"
+                                        android:textColor="#222"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </net.cachapa.expandablelayout.ExpandableLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/question_expand_button_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#CD666666"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:textStyle="bold"
+                    android:elevation="6dp"
+                    android:gravity="center"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:text="Question 5"
+                    android:textColor="#FFF" />
+
+                <net.cachapa.expandablelayout.ExpandableLayout
+                    android:id="@+id/question_answers_summary_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="-8dp"
+                    android:layout_marginBottom="8dp"
+                    app:el_duration="500"
+                    app:el_expanded="false">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/summary_all_answered_answers_5_wrapper"
+                            android:layout_width="match_parent"
+                            android:background="#CDDDDDDD"
+                            android:clipToPadding="false"
+                            android:elevation="4dp"
+                            android:padding="16dp"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:text="Correct Answer:"
+                                android:paddingRight="8dp"
+                                android:textColor="#222" />
+                            <TextView
+                                android:id="@+id/summary_all_answered_answers_5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Answer"
+                                android:textColor="#222" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/summary_player_answers_5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/summary_all_answered_answers_5_wrapper"
+                            android:background="#CDFFFFFF"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+                                <!-- Player 1 Correct/Wrong Answer Indicator image -->
+                                <ImageView
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/answer_indicator_5_player_1"
+                                    style="@style/AnswerIndicatorImage"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"/>
+
+                                <LinearLayout
+                                    android:id="@+id/summary_answer_5_player_1_wrapper"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginRight="8dp">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:text="Player 1 answer:"
+                                        android:paddingBottom="4dp"
+                                        android:paddingRight="8dp"
+                                        android:textColor="#222" />
+                                    <TextView
+                                        android:id="@+id/summary_answer_5_player_1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Player 1 answer"
+                                        android:paddingBottom="8dp"
+                                        android:textColor="#222"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content">
+                                <!-- Player 2 Correct/Wrong Answer Indicator image -->
+                                <ImageView
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/answer_indicator_5_player_2"
+                                    style="@style/AnswerIndicatorImage"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginRight="8dp"/>
+
+                                <LinearLayout
+                                    android:id="@+id/summary_answer_5_player_2_wrapper"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:layout_marginRight="8dp">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:textStyle="bold"
+                                        android:text="Player 2 answer:"
+                                        android:paddingBottom="4dp"
+                                        android:paddingRight="8dp"
+                                        android:textColor="#222" />
+                                    <TextView
+                                        android:id="@+id/summary_answer_5_player_2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Player 2 answer"
+                                        android:paddingBottom="8dp"
+                                        android:textColor="#222"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </net.cachapa.expandablelayout.ExpandableLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

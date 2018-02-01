@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- App name [CHAR LIMIT = 40] -->
+    <string name="app_name">QuizApp - Klasyczne Gry RPG</string>
+    <!-- Main background image [CHAR LIMIT = 40] -->
+    <string name="background">Główne tło</string>
+    <!-- Main logo image [CHAR LIMIT = 40] -->
+    <string name="logo">Główne logo</string>
+    <!-- Continue Button image [CHAR LIMIT = 40] -->
+    <string name="continue_button">Przycisk \'Kontynuuj\'</string>
+
+    <!-- All questions & amswers [CHAR LIMIT = 150] -->
+    <string name="question_1">Która z tych grup nie istnieje w Fallout 4?:</string>
+    <string name="question_1_answer_1">Bractwo Stali</string>
+    <string name="question_1_answer_2">Trasa</string>
+    <string name="question_1_answer_3">Różowe Punki</string>
+    <string name="question_1_answer_4">Minutemani Wspólnoty</string>
+
+    <string name="question_2">Które studio stworzyło Fallout 4?:</string>
+    <string name="question_2_answer_1">EA</string>
+    <string name="question_2_answer_2">Rockstar</string>
+    <string name="question_2_answer_3">Bethesda Game Studios</string>
+    <string name="question_2_answer_4">Ubisoft</string>
+
+    <string name="question_3">Historia Fallout 4 dzieje się:</string>
+    <string name="question_3_answer_1">10 lat po wydarzeniach z Fallout 3</string>
+    <string name="question_3_answer_2">100 lat po wydarzeniach z Fallout 3</string>
+    <string name="question_3_answer_3">25 lat po wydarzeniach z Fallout 3</string>
+    <string name="question_3_answer_4">W tym samym czasie co Fallout 3, ale w innej okolicy</string>
+
+    <string name="question_4">Jak jest określany główny charakter w Fallout 4?:</string>
+    <string name="question_4_answer_1">Ocalały</string>
+    <string name="question_4_answer_2">Weteran</string>
+    <string name="question_4_answer_3">Renegat</string>
+    <string name="question_4_answer_4">Wyrzutek</string>
+
+    <string name="question_5">Kiedy został wydany Fallout Online?:</string>
+    <string name="question_5_answer_1">10 Listopada 2010</string>
+    <string name="question_5_answer_2">10 Grudnia 2011</string>
+    <string name="question_5_answer_3">10 Listopada 2015</string>
+    <string name="question_5_answer_4">Nie został wydany</string>
+
+    <string name="question_6">W którym roku zaczyna się pierwszy Fallout?:</string>
+    <string name="question_6_answer_1">2251</string>
+    <string name="question_6_answer_2">2161</string>
+    <string name="question_6_answer_3">2281</string>
+    <string name="question_6_answer_4">2291</string>
+
+    <string name="question_7">W którym roku zaczęła się i skończyła Wielka Wojna (uniwersum Fallouta)?:</string>
+    <string name="question_7_answer_1">2057</string>
+    <string name="question_7_answer_2">2077</string>
+    <string name="question_7_answer_3">2097</string>
+    <string name="question_7_answer_4">2098</string>
+
+    <string name="question_8">W którym roku zostało wydane Final Fantasy 7?:</string>
+    <string name="question_8_answer_1">1990</string>
+    <string name="question_8_answer_2">1997</string>
+    <string name="question_8_answer_3">2000</string>
+    <string name="question_8_answer_4">2003</string>
+
+    <string name="question_9">Jak nazywa się główna postać w Final Fantasy 7?:</string>
+    <string name="question_9_answer_1">Dawson Edge</string>
+    <string name="question_9_answer_2">Edgar Steere</string>
+    <string name="question_9_answer_3">Cloud Strife</string>
+    <string name="question_9_answer_4">John Snape</string>
+
+    <string name="question_10">Z ilu części składa się seria Mass Effect?:</string>
+    <string name="question_10_answer_1">2</string>
+    <string name="question_10_answer_2">3</string>
+    <string name="question_10_answer_3">4</string>
+    <string name="question_10_answer_4">5</string>
+
+    <string name="question_11">Które z tych postaci pojawiają się w grach z serii Mass Effect?:</string>
+    <string name="question_11_answer_1">Commander Shepard</string>
+    <string name="question_11_answer_2">Miranda Lawson</string>
+    <string name="question_11_answer_3">John Hex</string>
+    <string name="question_11_answer_4">Urdnot Wrex</string>
+
+    <string name="question_12">Jak nazywa się Komandor, który jest główną postacią w oryginalnej trylogii Mass Effect?:</string>
+    <string name="question_12_answer_1">Shepard</string>
+    <string name="question_12_answer_1_alt">Komandor Shepard</string>
+
+    <string name="question_13">Jak nazywa się kraina, w której dzieje się akcja gry Baldur\'s Gate?:</string>
+    <string name="question_13_answer_1">Zapomniane Królestwo</string>
+    <string name="question_13_answer_2">Wyspa Zagłady</string>
+    <string name="question_13_answer_3">Wybrzeże Mieczy</string>
+    <string name="question_13_answer_4">Ciemne Niebo</string>
+
+    <string name="question_14">Który surowiec zaczął się rozkładać na początku gry Baldur\'s Gate?:</string>
+    <string name="question_14_answer_1">żelazo</string>
+
+    <string name="question_15">Które postacie pojawiają się w Baldur\'s Gate?:</string>
+    <string name="question_15_answer_1">Drizzt Do\'Urden</string>
+    <string name="question_15_answer_2">Arenger</string>
+    <string name="question_15_answer_3">Zoltan</string>
+    <string name="question_15_answer_4">Elminster</string>
+
+    <string name="question_16">Którymi rasami można grać w Might and Magic VI?:</string>
+    <string name="question_16_answer_1">Ludzie</string>
+    <string name="question_16_answer_2">Orki</string>
+    <string name="question_16_answer_3">Elfy</string>
+    <string name="question_16_answer_4">Krasnoludy</string>
+
+    <string name="question_17">Jak nazywa się król Enroth w Might and Magic VI?:</string>
+    <string name="question_17_answer_1">Tanir</string>
+    <string name="question_17_answer_2">Ragnar</string>
+    <string name="question_17_answer_3">Roland</string>
+    <string name="question_17_answer_4">Sulman</string>
+
+    <string name="question_18">Za które gry odpowiadał Jon Van Caneghem?:</string>
+    <string name="question_18_answer_1">Might and Magic VI</string>
+    <string name="question_18_answer_2">Heroes of Might and Magic II</string>
+    <string name="question_18_answer_3">Heroes of Might and Magic III</string>
+    <string name="question_18_answer_4">Civilization</string>
+
+    <string name="question_19">Jak nazywa się główny bohater w grze Planescape: Torment?:</string>
+    <string name="question_19_answer_1">Bezimienny</string>
+    <string name="question_19_answer_1_alt">Nameless One</string>
+
+    <string name="question_20">Co dzieje się z głównym bohaterem gry Planescape: Torment gdy zostaje zabity?:</string>
+    <string name="question_20_answer_1">Umiera</string>
+    <string name="question_20_answer_2">Zamienia się postać zbliżoną do ducha</string>
+    <string name="question_20_answer_3">Budzi się po jakimś czasie, często z kompletną amnezją</string>
+    <string name="question_20_answer_4">Zostaje przeniesiony do innej krainy</string>
+
+    <string name="question_21">Jak nazywa się dawna miłość głównego bohatera (która objawia się mu jako duch) w Planescape: Torment?:</string>
+    <string name="question_21_answer_1">Deionarra</string>
+
+    <string name="question_22">Które z klas postaci są dostępne do wybory dla gracza w NetHack?:</string>
+    <string name="question_22_answer_1">Rycerz</string>
+    <string name="question_22_answer_2">Czarodziej</string>
+    <string name="question_22_answer_3">Turysta</string>
+    <string name="question_22_answer_4">Magik</string>
+
+    <string name="question_23">Co gracz musi odzyskać, aby wygrać w grze NetHack?:</string>
+    <string name="question_23_answer_1">Amulet Yendor</string>
+    <string name="question_23_answer_2">Koronę Yandar</string>
+    <string name="question_23_answer_3">Runy Wiatru</string>
+    <string name="question_23_answer_4">Zakazaną Różdżkę</string>
+
+    <string name="question_24">Postać gracza w NetHack może mieć towarzysza w postaci:</string>
+    <string name="question_24_answer_1">Małego kotka</string>
+    <string name="question_24_answer_2">Małego psa</string>
+    <string name="question_24_answer_3">Osła</string>
+    <string name="question_24_answer_4">Osiodłanego kucyka</string>
+
+    <string name="question_25">Jak można rozwinąć skrót gry ADOM?:</string>
+    <string name="question_25_answer_1">Ancient Domains of Mystery</string>
+    <string name="question_25_answer_2">Apocalyptic Domains of Mourning</string>
+    <string name="question_25_answer_3">Ancient Domains of Medora</string>
+    <string name="question_25_answer_4">At Dawn of Mankind</string>
+
+    <string name="question_26">Jak nazywa się świat, w którym dzieje się akcja gry ADOM?:</string>
+    <string name="question_26_answer_1">Elron</string>
+    <string name="question_26_answer_2">Medora</string>
+    <string name="question_26_answer_3">Meldorn</string>
+    <string name="question_26_answer_4">Andaria</string>
+
+    <string name="question_27">Ile ras jest dostępnych dla graczy w ADOM?:</string>
+    <string name="question_27_answer_1">12</string>
+
+    <string name="question_28">Co zapisuje wiedzę postaci na temat potworów w ADOM?:</string>
+    <string name="question_28_answer_1">Pamięć Stworzeń</string>
+    <string name="question_28_answer_2">Biblioteka Stworzeń</string>
+    <string name="question_28_answer_3">Pamięć Potworów</string>
+    <string name="question_28_answer_4">Teoria Potworów</string>
+
+    <string name="question_29">Jak nazywają się Pierwotne Zła w Diablo?:</string>
+    <string name="question_29_answer_1">Diablo, Pan Grozy</string>
+    <string name="question_29_answer_2">Vizjerei, Pan Zagłady</string>
+    <string name="question_29_answer_3">Mephisto, Pan Nienawiści</string>
+    <string name="question_29_answer_4">Baal, Pan Zniszczenia</string>
+
+    <string name="question_30">Niebiesko oznaczone przedmioty w Diablo to:</string>
+    <string name="question_30_answer_1">Przedmioty zwykłe</string>
+    <string name="question_30_answer_2">Przedmioty magiczne</string>
+    <string name="question_30_answer_3">Przedmioty, które nie mogą być zniszczone (standardowo przedmioty z czasem się zużywają)</string>
+    <string name="question_30_answer_4">Przedmioty rzadkie</string>
+
+    <string name="question_31">Łotrzyca jest w Diablo mistrzem:</string>
+    <string name="question_31_answer_1">Broni białej</string>
+    <string name="question_31_answer_2">Broni dystansowej</string>
+    <string name="question_31_answer_3">Zarówno broni białej, jak i dystansowej</string>
+    <string name="question_31_answer_4">Jest słabsza w używaniu broni, ale bardzo dobra w skradaniu i technikach przetrwania</string>
+
+    <string name="question_32">Ilu graczy może brać udział w trybie wieloosobowym w Diablo 1?:</string>
+    <string name="question_32_answer_1">4</string>
+
+    <string name="question_33">Na jaką platformę został oryginalnie wydany Chrono Trigger?:</string>
+    <string name="question_33_answer_1">Sega Saturn</string>
+    <string name="question_33_answer_2">Nintendo 64</string>
+    <string name="question_33_answer_3">SNES</string>
+    <string name="question_33_answer_4">Atari</string>
+
+    <string name="question_34">Które postacie w Chrono Trigger są grywalne?:</string>
+    <string name="question_34_answer_1">Crono</string>
+    <string name="question_34_answer_2">Marle</string>
+    <string name="question_34_answer_3">Dawn</string>
+    <string name="question_34_answer_4">Lucca</string>
+
+    <string name="question_35">Jak nazywa się smok, który w Skyrim zjada świat?:</string>
+    <string name="question_35_answer_1">Alduin</string>
+    <string name="question_35_answer_2">Aldoran</string>
+    <string name="question_35_answer_3">Andor</string>
+    <string name="question_35_answer_4">Allogar</string>
+
+    <string name="question_36">Który silnik graficzny został użyty do stworzenia Skyrim:</string>
+    <string name="question_36_answer_1">Sky Engine</string>
+    <string name="question_36_answer_2">Creation Engine</string>
+    <string name="question_36_answer_3">Bethesda Engine</string>
+    <string name="question_36_answer_4">Oracle Engine</string>
+
+    <string name="question_37">Na którym z kontynentów Skyrim jest prowincją królestwa?:</string>
+    <string name="question_37_answer_1">Tamriel</string>
+    <string name="question_37_answer_2">Akatosh</string>
+    <string name="question_37_answer_3">Brime</string>
+    <string name="question_37_answer_4">Helgen</string>
+
+    <string name="question_38">Jak nazywa się zakon łowców smoków w Skyrim?:</string>
+    <string name="question_38_answer_1">Blades</string>
+
+    <string name="question_39">Jak nazywa się twórca powieści, na kórej oparta jest gra The Witcher (Wiedźmin)?:</string>
+    <string name="question_39_answer_1">Andrzej Sapkowski</string>
+    <string name="question_39_answer_2">Andrzej Sepowski</string>
+    <string name="question_39_answer_3">Adam Zielny</string>
+    <string name="question_39_answer_4">Arnold Siemanowski</string>
+
+    <string name="question_40">Jak nazywa się główny charakter w grze The Witcher (Wiedźmin)?:</string>
+    <string name="question_40_answer_1">Geralt</string>
+
+    <string name="question_41">Wiedźmini w grze The Witcher (Wiedźmin) są:</string>
+    <string name="question_41_answer_1">Łowcy duchów</string>
+    <string name="question_41_answer_2">Zabójcy potworów</string>
+    <string name="question_41_answer_3">Elitarni najemnicy</string>
+    <string name="question_41_answer_4">Łowcy czarownic</string>
+
+    <string name="question_42">Jak nazywa się stolica Temerii w grze The Witcher (Wiedźmin)?:</string>
+    <string name="question_42_answer_1">Wyzima</string>
+
+    <string name="question_43">Przeciwko komu walczą ludzie w grze Gothic?:</string>
+    <string name="question_43_answer_1">Elfom</string>
+    <string name="question_43_answer_2">Orkom</string>
+    <string name="question_43_answer_3">Potworom różnego pochodzenia</string>
+    <string name="question_43_answer_4">Armii Nieumarłych</string>
+
+    <string name="question_44">Obozy w pierwszej części Gothic to:</string>
+    <string name="question_44_answer_1">Stary Obóz</string>
+    <string name="question_44_answer_2">Nowy Obóz</string>
+    <string name="question_44_answer_3">Skalny Obóz</string>
+    <string name="question_44_answer_4">Obóz Bractwa</string>
+
+    <string name="question_45">Jak się nazywa lider Magów Ognia w grze Gothic?:</string>
+    <string name="question_45_answer_1">Xardas</string>
+
+    <string name="question_46">Którą część serii Elder Scrolls poprzedza Oblivion?:</string>
+    <string name="question_46_answer_1">Morrowind</string>
+    <string name="question_46_answer_2">Skyrim</string>
+    <string name="question_46_answer_3">Arena</string>
+    <string name="question_46_answer_4">Daggerfall</string>
+
+    <string name="question_47">Na które platformy został wydany Oblivion?:</string>
+    <string name="question_47_answer_1">PC (Microsoft Windows)</string>
+    <string name="question_47_answer_2">Xbox 360</string>
+    <string name="question_47_answer_3">PlayStation 3</string>
+    <string name="question_47_answer_4">Wszystkie powyżej</string>
+
+    <string name="question_48">Który z przedmiotów powierza graczowi cesarz Uriel Septim (w grze Oblivion):</string>
+    <string name="question_48_answer_1">Kielich Ognia</string>
+    <string name="question_48_answer_2">Amulet Królów</string>
+    <string name="question_48_answer_3">Pierścień Zagłady</string>
+    <string name="question_48_answer_4">Miecz Światła</string>
+
+    <string name="question_49">Co oznacza tytułowy Oblivion w grze The Elder Scrolls IV: Oblivion?:</string>
+    <string name="question_49_answer_1">Imię głównego bohatera</string>
+    <string name="question_49_answer_2">Otchłań</string>
+    <string name="question_49_answer_3">Krainę w innym wymiarze</string>
+    <string name="question_49_answer_4">Bractwo zabójców</string>
+
+    <string name="question_50">Gdzie dzieje się akcja serii Fable?:</string>
+    <string name="question_50_answer_1">Albion</string>
+    <string name="question_50_answer_2">Arborea</string>
+    <string name="question_50_answer_3">Atlantyda</string>
+    <string name="question_50_answer_4">Avalon</string>
+
+    <string name="question_51">Jak nazywa się główny zły charakter w pierwszej części Fable:</string>
+    <string name="question_51_answer_1">Jack Rzeźnik</string>
+    <string name="question_51_answer_1_alt">Jack</string>
+
+    <string name="question_52">Jak nazywa się pierwsza gra z serii Dragon Age?:</string>
+    <string name="question_52_answer_1">Dragon Age: Inkwizycja </string>
+    <string name="question_52_answer_2">Dragon Age: Początek</string>
+    <string name="question_52_answer_3">Dragon Age: Przebudzenie</string>
+    <string name="question_52_answer_4">Dragon Age: Burza</string>
+
+    <string name="question_53">Jak nazywa się główny bohater w pierwszej części Deus Ex?:</string>
+    <string name="question_53_answer_1">JC Denton</string>
+    <string name="question_53_answer_1_alt">JC</string>
+    <string name="question_53_answer_1_alt_2">Denton</string>
+
+    <string name="question_54">Jak nazywają się miasta, w których dzieje się akcja pierwszej części Deus Ex?:</string>
+    <string name="question_54_answer_1">Nowy Jork</string>
+    <string name="question_54_answer_2">Hong Kong</string>
+    <string name="question_54_answer_3">Paryż</string>
+    <string name="question_54_answer_4">Praga</string>
+
+    <string name="question_55">Sekretne grupy pojawiające się w pierwszej części Deus Ex to:</string>
+    <string name="question_55_answer_1">Iluminaci</string>
+    <string name="question_55_answer_2">Wolni Masoni</string>
+    <string name="question_55_answer_3">Templariusze</string>
+    <string name="question_55_answer_4">Majestic 12</string>
+
+    <!-- Question labels [CHAR LIMIT = 40] -->
+    <string name="question_1_label">Pytanie 1</string>
+    <string name="answer_1_label">Odpowiedź 1</string>
+    <string name="answer_2_label">Odpowiedź 2</string>
+    <string name="answer_3_label">Odpowiedź 3</string>
+    <string name="answer_4_label">Odpowiedź 4</string>
+
+    <!-- Text answer hint [CHAR LIMIT = 40] -->
+    <string name="text_answer_hint">Twoja odpowiedź</string>
+
+    <!-- 'Current Player' text for quiz questions [CHAR LIMIT = 100] -->
+    <string name="current_player">Tura Gracza <xliff:g id="current_player" example="1">%1d</xliff:g> - Pytanie <xliff:g id="current_question" example="1">%1d</xliff:g></string>
+
+    <!-- Question image [CHAR LIMIT = 40] -->
+    <string name="question_image">Obraz do pytania</string>
+
+    <!-- 'Next Player' button image [CHAR LIMIT = 40] -->
+    <string name="next_player_continue">Kontynuuj</string>
+
+    <!-- 'Next Player' background image [CHAR LIMIT = 200] -->
+    <string name="next_player">Przekaż urządzenie następnemu graczowi (tło)</string>
+
+    <!-- 'Winner Info' message - is tie [CHAR LIMIT = 50] -->
+    <string name="winner_info_is_tie">Gracze zremisowali</string>
+
+    <!-- 'Winner Info' message - no tie [CHAR LIMIT = 100] -->
+    <string name="winner_info_no_tie">Gracz <xliff:g id="current_player" example="1">%1d</xliff:g> wygrał</string>
+
+    <!-- 'Final Toast' message - is tie [CHAR LIMIT = 200] -->
+    <string name="final_toast_is_tie">Gracze zremisowali. Liczba podanych przez każdego z nich odpowiedzi to: <xliff:g id="correct_answers_no" example="1">%1d</xliff:g>.</string>
+
+    <!-- 'Final Toast' message - no tie [CHAR LIMIT = 200] -->
+    <string name="final_toast_no_tie">Gracz <xliff:g id="first_player" example="1">%1d</xliff:g> wygrał poprawnie odpowiadając na <xliff:g id="correct_answers_no_first_player" example="1">%1d</xliff:g> pytań, podczas gdy gracz <xliff:g id="second_player" example="1">%1d</xliff:g> podał <xliff:g id="correct_answers_no_second_player" example="1">%1d</xliff:g> poprawnych odpowiedzi.</string>
+
+    <!-- 'Final Toast' message - last line [CHAR LIMIT = 100] -->
+    <string name="final_toast_last_line">Zobacz podsumowanie.</string>
+
+    <!-- 'Reset Quiz' button [CHAR LIMIT = 25] -->
+    <string name="reset_button">Zresetuj Quiz</string>
+
+    <!-- Text when question is not answered yet [CHAR LIMIT = 200] -->
+    <string name="not_answered_question">Musisz podać odpowiedź na pytanie.</string>
+
+    <!-- 'Next Player' info message [CHAR LIMIT = 100] -->
+    <string name="next_player_info">Przekaż urządzenie graczowi <xliff:g id="current_player" example="1">%1d</xliff:g></string>
+</resources>

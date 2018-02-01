@@ -1,0 +1,241 @@
+<resources>
+    <style name="MatchParent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="WrapContent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="MainBackground">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="MainLogo">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="MainHeading">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/selectionHeadingMargin</item>
+        <item name="android:layout_marginEnd">@dimen/selectionHeadingMargin</item>
+        <item name="android:layout_marginTop">60dp</item>
+        <item name="android:shadowColor">#CD222222</item>
+        <item name="android:shadowDx">3</item>
+        <item name="android:shadowDy">3</item>
+        <item name="android:shadowRadius">2</item>
+        <item name="android:fontFamily">@font/galderglynn_titling_bd</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/headingTextSize</item>
+    </style>
+
+    <style name="ActionButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="ActionButtonWithVerticalMargin">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_marginTop">@dimen/standardSpacing</item>
+        <item name="android:layout_marginBottom">@dimen/standardSpacing</item>
+    </style>
+
+    <style name="QuestionImage">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">220dp</item>
+        <item name="android:layout_below">@id/main_heading</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:src">@drawable/question_1</item>
+    </style>
+
+    <style name="Question">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginLeft">@dimen/doubleSpacing</item>
+        <item name="android:layout_marginRight">@dimen/doubleSpacing</item>
+        <item name="android:layout_below">@id/question_image</item>
+        <item name="android:textColor">#ddd</item>
+    </style>
+
+    <style name="AnswersRadioGroup">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/standardSpacing</item>
+        <item name="android:layout_marginLeft">@dimen/doubleSpacing</item>
+        <item name="android:layout_marginRight">@dimen/doubleSpacing</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="RadioAnswer">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textColor">#DDDDDD</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:buttonTint">@color/colorPrimary</item>
+        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+    </style>
+
+    <style name="AnswersCheckboxGroup">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/standardSpacing</item>
+        <item name="android:layout_marginLeft">@dimen/doubleSpacing</item>
+        <item name="android:layout_marginRight">@dimen/doubleSpacing</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="CheckboxAnswer">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textColor">#DDDDDD</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:buttonTint">@color/colorPrimary</item>
+        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+    </style>
+
+    <style name="TextAnswer">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/standardSpacing</item>
+        <item name="android:layout_marginLeft">@dimen/doubleSpacing</item>
+        <item name="android:layout_marginRight">@dimen/doubleSpacing</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:textColorHint">#88FFFFFF</item>
+        <item name="android:backgroundTint">#FFFFFF</item>
+    </style>
+
+    <style name="NextPlayerContinue">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginBottom">@dimen/nextPlayerContinueMarginBottom</item>
+        <item name="android:layout_marginLeft">@dimen/nextButtonHorizontalMargin</item>
+        <item name="android:layout_marginRight">@dimen/nextButtonHorizontalMargin</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:fontFamily">@font/galderglynn_titling_bd</item>
+        <item name="android:onClick">nextPlayerContinue</item>
+        <item name="android:text">@string/next_player_continue</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:textSize">@dimen/nextPlayerButtonTextSize</item>
+    </style>
+
+    <style name="NextQuestionContinue">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:layout_marginLeft">@dimen/nextButtonHorizontalMargin</item>
+        <item name="android:layout_marginRight">@dimen/nextButtonHorizontalMargin</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:fontFamily">@font/galderglynn_titling_bd</item>
+        <item name="android:onClick">nextPlayerContinue</item>
+        <item name="android:text">@string/next_player_continue</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:textSize">@dimen/nextPlayerButtonTextSize</item>
+    </style>
+
+    <style name="NextPlayerCardView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginTop">@dimen/standardSpacing</item>
+        <item name="android:layout_marginBottom">@dimen/standardSpacing</item>
+        <item name="android:layout_marginLeft">@dimen/standardSpacing</item>
+        <item name="android:layout_marginRight">@dimen/standardSpacing</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="NextPlayerImage">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:contentDescription">@string/next_player</item>
+        <item name="android:src">@drawable/next_player</item>
+    </style>
+
+    <style name="NextPlayerInfo">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:layout_marginTop">@dimen/nextPlayerMarginTop</item>
+        <item name="android:layout_marginRight">@dimen/nextPlayerMarginTop</item>
+        <item name="android:layout_marginLeft">@dimen/nextPlayerMarginTop</item>
+        <item name="android:fontFamily">@font/galderglynn_titling_bd</item>
+        <item name="android:gravity">center</item>
+        <item name="android:shadowColor">@color/nextPlayerShadowColor</item>
+        <item name="android:shadowDx">@dimen/shadowOffset</item>
+        <item name="android:shadowDy">@dimen/shadowOffset</item>
+        <item name="android:shadowRadius">@dimen/shadowRadius</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/nextPlayerTextSize</item>
+    </style>
+
+    <style name="AnswersSummaryCardView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginTop">@dimen/standardSpacing</item>
+        <item name="android:layout_marginBottom">@dimen/standardSpacing</item>
+        <item name="android:layout_marginLeft">@dimen/standardSpacing</item>
+        <item name="android:layout_marginRight">@dimen/standardSpacing</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="AnswersSummaryImage">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:src">@drawable/answers_summary</item>
+    </style>
+
+    <style name="AnswerIndicatorImage">
+        <item name="android:layout_width">16dp</item>
+        <item name="android:layout_height">16dp</item>
+        <item name="android:src">@drawable/indicator_wrong_answer</item>
+    </style>
+
+    <style name="StepperIndicator">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/standardSpacing</item>
+        <item name="android:layout_marginBottom">@dimen/doubleSpacing</item>
+        <item name="android:layout_marginStart">@dimen/standardSpacing</item>
+        <item name="android:layout_marginEnd">@dimen/standardSpacing</item>
+    </style>
+
+    <style name="ResetButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginBottom">24dp</item>
+        <item name="android:layout_marginLeft">@dimen/nextButtonHorizontalMargin</item>
+        <item name="android:layout_marginRight">@dimen/nextButtonHorizontalMargin</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:fontFamily">@font/galderglynn_titling_bd</item>
+        <item name="android:onClick">resetQuiz</item>
+        <item name="android:text">@string/reset_button</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:textSize">@dimen/nextPlayerButtonTextSize</item>
+    </style>
+</resources>

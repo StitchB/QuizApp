@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchParent"
+    tools:context=".StartScreenActivity">
+
+    <!-- Main background -->
+    <ImageView
+        android:id="@+id/background"
+        android:src="@drawable/bg"
+        style="@style/MainBackground"
+        android:contentDescription="@string/background" />
+
+    <!-- Main Logo -->
+    <ImageView
+        android:id="@+id/logo"
+        android:src="@drawable/logo"
+        style="@style/MainLogo"
+        android:contentDescription="@string/logo"
+        android:layout_marginTop="@dimen/startScreenSpacing"
+        android:layout_marginLeft="@dimen/standardSpacing"
+        android:layout_marginRight="@dimen/standardSpacing" />
+
+    <!-- Button for continuing to first character selection -->
+    <ImageButton
+        android:id="@+id/button_continue"
+        android:src="@drawable/selector_continue_button"
+        style="@style/ActionButton"
+        android:layout_below="@id/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/startScreenSpacing"
+        android:contentDescription="@string/continue_button" />
+
+</RelativeLayout>
