@@ -335,6 +335,24 @@
     <!-- 'Winner Info' message - is tie [CHAR LIMIT = 50] -->
     <string name="winner_info_is_tie">There is a tie</string>
 
+    <!-- Player 1 Score Label [CHAR LIMIT = 50] -->
+    <string name="player_1_score_label">Player 1 Score:</string>
+
+    <!-- Player 2 Score Label [CHAR LIMIT = 50] -->
+    <string name="player_2_score_label">Player 2 Score:</string>
+
+    <!-- Player 1 Answer [CHAR LIMIT = 50] -->
+    <string name="player_1_answer">Player 1 answer:</string>
+
+    <!-- Player 2 Answer [CHAR LIMIT = 50] -->
+    <string name="player_2_answer">Player 2 answer:</string>
+
+    <!-- Correct/Wrong Answer Indicator Image [CHAR LIMIT = 50] -->
+    <string name="answer_indicator">Correct/Wrong Answer Indicator Image</string>
+
+    <!-- Correct Answer Label [CHAR LIMIT = 50] -->
+    <string name="correct_answer_label">Correct Answer:</string>
+
     <!-- 'Winner Info' message - no tie [CHAR LIMIT = 100] -->
     <string name="winner_info_no_tie">Player <xliff:g id="current_player" example="1">%1d</xliff:g> is the winner</string>
 

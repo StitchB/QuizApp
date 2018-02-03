@@ -25,10 +25,10 @@ public class StartScreenActivity extends AppCompatActivity {
         ImageView buttonContinue = findViewById(R.id.button_continue);
         buttonContinue.setOnClickListener(new OnClickListener() {
             public void onClick(View arg0) {
-            // Start QuestionsActivity
-            Intent myIntent = new Intent(StartScreenActivity.this, QuestionsActivity.class);
-            startActivity(myIntent);
-            finish();
+                // Start QuestionsActivity
+                Intent myIntent = new Intent(StartScreenActivity.this, QuestionsActivity.class);
+                startActivity(myIntent);
+                finish();
             }
         });
     }

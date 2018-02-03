@@ -335,6 +335,24 @@
     <!-- 'Winner Info' message - is tie [CHAR LIMIT = 50] -->
     <string name="winner_info_is_tie">Gracze zremisowali</string>
 
+    <!-- Player 1 Score Label [CHAR LIMIT = 50] -->
+    <string name="player_1_score_label">Punkty Gracza 1:</string>
+
+    <!-- Player 2 Score Label [CHAR LIMIT = 50] -->
+    <string name="player_2_score_label">Punkty Gracza 2:</string>
+
+    <!-- Player 1 Answer [CHAR LIMIT = 50] -->
+    <string name="player_1_answer">Odpowiedź Gracza 1:</string>
+
+    <!-- Player 2 Answer [CHAR LIMIT = 50] -->
+    <string name="player_2_answer">Odpowiedź Gracza 2:</string>
+
+    <!-- Correct/Wrong Answer Indicator Image [CHAR LIMIT = 50] -->
+    <string name="answer_indicator">Wskaźnik dobrej/złej odpowiedzi</string>
+
+    <!-- Correct Answer Label [CHAR LIMIT = 50] -->
+    <string name="correct_answer_label">Poprawna odpowiedź:</string>
+
     <!-- 'Winner Info' message - no tie [CHAR LIMIT = 100] -->
     <string name="winner_info_no_tie">Gracz <xliff:g id="current_player" example="1">%1d</xliff:g> wygrał</string>
 

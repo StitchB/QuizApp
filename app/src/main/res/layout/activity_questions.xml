@@ -108,9 +108,6 @@
         android:id="@+id/button_continue"
         android:src="@drawable/selector_continue_button"
         style="@style/NextQuestionContinue"
-        android:layout_below="@id/logo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/startScreenSpacing"
         android:contentDescription="@string/continue_button" />
 
     <!-- Next player card view -->
@@ -142,9 +139,6 @@
                 android:id="@+id/next_player_continue"
                 android:src="@drawable/selector_continue_button"
                 style="@style/NextPlayerContinue"
-                android:layout_below="@id/logo"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/startScreenSpacing"
                 android:contentDescription="@string/continue_button" />
 
         </RelativeLayout>
@@ -163,8 +157,7 @@
 
             <LinearLayout
                 android:id="@+id/answers_summary_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/MatchParent"
                 android:orientation="vertical"></LinearLayout>
 
             <!-- Reset button -->
@@ -172,7 +165,6 @@
                 android:id="@+id/reset_button"
                 android:src="@drawable/selector_reset_button"
                 style="@style/ResetButton"
-                android:layout_centerHorizontal="true"
                 android:contentDescription="@string/reset_button" />
 
         </RelativeLayout>

@@ -13,7 +13,7 @@ interface Constants {
     //Question answer types
     String QUESTION_ANSWER_TYPE_SINGLE_CHOICE_RADIO = "answer_type_single_choice_radio";
     String QUESTION_ANSWER_TYPE_SINGLE_ANSWER_TEXT = "answer_type_single_choice_text";
-    String QUESTION_ANSWER_TYPE_MULIPLE_CHOICE_CHECKBOXES = "answer_type_multiple_choice_checkboxes";
+    String QUESTION_ANSWER_TYPE_MULTIPLE_CHOICE_CHECKBOXES = "answer_type_multiple_choice_checkboxes";
 
     //Maximum of Answers (Total for 2 players)
     int MAX_ANSWERS = 10;

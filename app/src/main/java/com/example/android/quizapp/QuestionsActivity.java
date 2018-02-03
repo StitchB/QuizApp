@@ -41,45 +41,45 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
     private final HashMap<String, HashMap<String, String>> questions = new HashMap<>();
     private final HashMap<String, ArrayList> answers = new HashMap<>();
     private HashMap<String, HashMap<String, String>> allSelectedAnswers = new HashMap<>();
-    ArrayList<String> alreadyUsedQuestions = new ArrayList<String>();
+    private ArrayList<String> alreadyUsedQuestions = new ArrayList<>();
 
     //Question numbers per each answer type
-    String[] singleChoiceRadioQuestions = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "13", "17", "20", "23",
+    private final String[] singleChoiceRadioQuestions = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "13", "17", "20", "23",
             "25", "26", "28", "30", "31", "33", "35", "36", "37", "39", "41", "43", "46",
             "47", "48", "49", "50", "52"};
-    String[] multipleChoiceCheckboxQuestions = {"11", "15", "16", "18", "22", "24", "29", "34", "44", "54", "55"};
-    String[] singleAnswerTextQuestions = {"12", "14", "19", "21", "27", "32", "38", "40", "42", "45", "51", "53"};
+    private final String[] multipleChoiceCheckboxQuestions = {"11", "15", "16", "18", "22", "24", "29", "34", "44", "54", "55"};
+    private final String[] singleAnswerTextQuestions = {"12", "14", "19", "21", "27", "32", "38", "40", "42", "45", "51", "53"};
 
     //Total questions count
-    int questionsCount = 55;
+    private final int questionsCount = 55;
 
     //Array list to keep all questions indexes (it will be used later to generate random questions)
-    ArrayList<String> questionsToUse = new ArrayList<String>();
+    private ArrayList<String> questionsToUse = new ArrayList<>();
 
     //Last used question types for the 'Quiz' & 'Answers Summary'
     private String quizLastQuestionType;
     private String summaryCurrentQuestionType;
 
     //Additional counters
-    int currentPlayer = 1;
-    int currentQuestion = 0;
-    int answersTotal = 0;
-    int player1CorrectAnswers = 0, player2CorrectAnswers = 0;
+    private int currentPlayer = 1;
+    private int currentQuestion = 0;
+    private int answersTotal = 0;
+    private int player1CorrectAnswers = 0, player2CorrectAnswers = 0;
 
     //Flag to keep info if current random question was generated in onCreate method
     private boolean onCreateQuestionGenerated = false;
 
     //Main heading & continue button views
-    private TextView MainHeadingView;
+    private TextView mainHeadingView;
     private ImageView buttonContinue;
 
     //Questions & Answer views
-    private TextView QuestionView;
-    private RadioGroup AnswerRadiosView;
-    private View AnswerCheckboxesView;
-    private EditText AnswerEditTextView;
-    private RadioButton Answer1RadioView, Answer2RadioView, Answer3RadioView, Answer4RadioView;
-    private CheckBox Answer1CheckBoxView, Answer2CheckBoxView, Answer3CheckBoxView, Answer4CheckBoxView;
+    private TextView questionView;
+    private RadioGroup answerRadiosView;
+    private View answerCheckboxesView;
+    private EditText answerEditTextView;
+    private RadioButton answer1RadioView, answer2RadioView, answer3RadioView, answer4RadioView;
+    private CheckBox answer1CheckBoxView, answer2CheckBoxView, answer3CheckBoxView, answer4CheckBoxView;
 
     //'Next Player' card view
     private CardView nextPlayerView;
@@ -87,20 +87,10 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
 
     //'Answers Summary' card view
     private CardView answersSummaryView;
-    private TextView winnerInfo;
-    private TextView player1Points, player2Points;
     private ExpandableLayout answersSummary1, answersSummary2, answersSummary3, answersSummary4, answersSummary5;
-    private TextView questionExpandButton1, questionExpandButton2, questionExpandButton3, questionExpandButton4, questionExpandButton5;
-    private TextView questionAllAnswers1, questionAllAnswers2, questionAllAnswers3, questionAllAnswers4, questionAllAnswers5;
-    private TextView questionAnswered1Player1, questionAnswered1Player2, questionAnswered2Player1, questionAnswered2Player2,
-                     questionAnswered3Player1, questionAnswered3Player2, questionAnswered4Player1, questionAnswered4Player2,
-                     questionAnswered5Player1, questionAnswered5Player2;
     private ImageView indicatorQuestion1Player1, indicatorQuestion1Player2, indicatorQuestion2Player1, indicatorQuestion2Player2,
-                      indicatorQuestion3Player1, indicatorQuestion3Player2, indicatorQuestion4Player1, indicatorQuestion4Player2,
-                      indicatorQuestion5Player1, indicatorQuestion5Player2;
-
-    //Inflater used by 'Answers Summary' card view
-    private LayoutInflater inflater;
+            indicatorQuestion3Player1, indicatorQuestion3Player2, indicatorQuestion4Player1, indicatorQuestion4Player2,
+            indicatorQuestion5Player1, indicatorQuestion5Player2;
 
     //Stepper indicator
     private StepperIndicator stepperIndicator;
@@ -120,24 +110,24 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
         context = getApplicationContext();
 
         //Main heading
-        MainHeadingView = findViewById(R.id.main_heading);
+        mainHeadingView = findViewById(R.id.main_heading);
 
         //Stepper indicator
         stepperIndicator = findViewById(R.id.stepper_indicator);
 
         //Question & answer views
-        QuestionView = findViewById(R.id.question);
-        AnswerRadiosView = findViewById(R.id.answers_r);
-        AnswerCheckboxesView = findViewById(R.id.answers_c);
-        AnswerEditTextView = findViewById(R.id.answer_e);
-        Answer1RadioView = findViewById(R.id.answer_1_r);
-        Answer2RadioView = findViewById(R.id.answer_2_r);
-        Answer3RadioView = findViewById(R.id.answer_3_r);
-        Answer4RadioView = findViewById(R.id.answer_4_r);
-        Answer1CheckBoxView = findViewById(R.id.answer_1_c);
-        Answer2CheckBoxView = findViewById(R.id.answer_2_c);
-        Answer3CheckBoxView = findViewById(R.id.answer_3_c);
-        Answer4CheckBoxView = findViewById(R.id.answer_4_c);
+        questionView = findViewById(R.id.question);
+        answerRadiosView = findViewById(R.id.answers_r);
+        answerCheckboxesView = findViewById(R.id.answers_c);
+        answerEditTextView = findViewById(R.id.answer_e);
+        answer1RadioView = findViewById(R.id.answer_1_r);
+        answer2RadioView = findViewById(R.id.answer_2_r);
+        answer3RadioView = findViewById(R.id.answer_3_r);
+        answer4RadioView = findViewById(R.id.answer_4_r);
+        answer1CheckBoxView = findViewById(R.id.answer_1_c);
+        answer2CheckBoxView = findViewById(R.id.answer_2_c);
+        answer3CheckBoxView = findViewById(R.id.answer_3_c);
+        answer4CheckBoxView = findViewById(R.id.answer_4_c);
 
         //'Next Player' card view
         nextPlayerView = findViewById(R.id.next_player_card_view);
@@ -151,7 +141,7 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
         answersSummaryView.setCardElevation(0);
 
         //Create array list with all questions indexes (it will be used later to generate random questions)
-        for(int i = 1; i <= questionsCount; i++) {
+        for (int i = 1; i <= questionsCount; i++) {
             questionsToUse.add(String.valueOf(i));
         }
 
@@ -174,10 +164,9 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
     /**
      * Inflate questions/answers summary
      */
-    private void inflateSummary()
-    {
+    private void inflateSummary() {
         //Set inflater & root view
-        inflater = LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(context);
         View rootView = inflater.inflate(R.layout.answers_summary, null, false);
 
         //Question & answers text strings
@@ -191,9 +180,9 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
         HashMap<String, String> allSelectedAnswersPlayer2 = allSelectedAnswers.get("player_2");
 
         //'Winner Info' & 'Player Points' views
-        winnerInfo = rootView.findViewById(R.id.winner_info);
-        player1Points = rootView.findViewById(R.id.player_1_points);
-        player2Points = rootView.findViewById(R.id.player_2_points);
+        TextView winnerInfo = rootView.findViewById(R.id.winner_info);
+        TextView player1Points = rootView.findViewById(R.id.player_1_points);
+        TextView player2Points = rootView.findViewById(R.id.player_2_points);
 
         //Views to keep questions indicator images
         indicatorQuestion1Player1 = rootView.findViewById(R.id.answer_indicator_1_player_1);
@@ -214,7 +203,7 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
         ArrayList currentCorrectAnswers;
 
         //Loop through all used questions
-        for (String questionNumber: alreadyUsedQuestions) {
+        for (String questionNumber : alreadyUsedQuestions) {
             //Increase question counter
             questionCounter++;
 
@@ -225,7 +214,7 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
             }
             //If multi choice checkbox question
             else if (Arrays.asList(multipleChoiceCheckboxQuestions).contains(questionNumber)) {
-                summaryCurrentQuestionType = Constants.QUESTION_ANSWER_TYPE_MULIPLE_CHOICE_CHECKBOXES;
+                summaryCurrentQuestionType = Constants.QUESTION_ANSWER_TYPE_MULTIPLE_CHOICE_CHECKBOXES;
             }
             //If single answer text question
             else if (Arrays.asList(singleAnswerTextQuestions).contains(questionNumber)) {
@@ -243,25 +232,25 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
             switch (questionCounter) {
                 case 1:
                     //Find related views
-                    questionExpandButton1 = rootView.findViewById(R.id.question_expand_button_1);
+                    TextView questionExpandButton1 = rootView.findViewById(R.id.question_expand_button_1);
                     questionExpandButton1.setText(currentQuestionText);
                     answersSummary1 = rootView.findViewById(R.id.question_answers_summary_1);
-                    questionAllAnswers1 = rootView.findViewById(R.id.summary_all_answered_answers_1);
+                    TextView questionAllAnswers1 = rootView.findViewById(R.id.summary_all_answered_answers_1);
 
                     //Build correct answers string & set it as visible for the user
                     questionAllAnswers1.setText(buildCorrectAnswersString(questionNumber,
-                                                                          currentQuestionAnswer1, currentQuestionAnswer2, currentQuestionAnswer3, currentQuestionAnswer4));
-                    
+                            currentQuestionAnswer1, currentQuestionAnswer2, currentQuestionAnswer3, currentQuestionAnswer4));
+
                     //Get current correct answers array list
                     currentCorrectAnswers = answers.get(questionNumber);
 
                     //Prepare & show answers string for the Player 1
-                    questionAnswered1Player1 = rootView.findViewById(R.id.summary_answer_1_player_1);
+                    TextView questionAnswered1Player1 = rootView.findViewById(R.id.summary_answer_1_player_1);
                     currentQuestionPlayerAnswers = buildPlayerAnswersString("1", questionCounter, questionNumber, currentCorrectAnswers, allSelectedAnswersPlayer1.get(String.valueOf(questionCounter)));
                     questionAnswered1Player1.setText(currentQuestionPlayerAnswers);
 
                     //Prepare & show answers string for the Player 2
-                    questionAnswered1Player2 = rootView.findViewById(R.id.summary_answer_1_player_2);
+                    TextView questionAnswered1Player2 = rootView.findViewById(R.id.summary_answer_1_player_2);
                     currentQuestionPlayerAnswers = buildPlayerAnswersString("2", questionCounter, questionNumber, currentCorrectAnswers, allSelectedAnswersPlayer2.get(String.valueOf(questionCounter)));
                     questionAnswered1Player2.setText(currentQuestionPlayerAnswers);
 
@@ -270,25 +259,25 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
                     break;
                 case 2:
                     //Find related views
-                    questionExpandButton2 = rootView.findViewById(R.id.question_expand_button_2);
+                    TextView questionExpandButton2 = rootView.findViewById(R.id.question_expand_button_2);
                     questionExpandButton2.setText(currentQuestionText);
                     answersSummary2 = rootView.findViewById(R.id.question_answers_summary_2);
-                    questionAllAnswers2 = rootView.findViewById(R.id.summary_all_answered_answers_2);
+                    TextView questionAllAnswers2 = rootView.findViewById(R.id.summary_all_answered_answers_2);
 
                     //Build correct answers string & set it as visible for the user
                     questionAllAnswers2.setText(buildCorrectAnswersString(questionNumber,
-                                                                          currentQuestionAnswer1, currentQuestionAnswer2, currentQuestionAnswer3, currentQuestionAnswer4));
+                            currentQuestionAnswer1, currentQuestionAnswer2, currentQuestionAnswer3, currentQuestionAnswer4));
 
                     //Get current correct answers array list
                     currentCorrectAnswers = answers.get(questionNumber);
 
                     //Prepare & show answers string for the Player 1
-                    questionAnswered2Player1 = rootView.findViewById(R.id.summary_answer_2_player_1);
+                    TextView questionAnswered2Player1 = rootView.findViewById(R.id.summary_answer_2_player_1);
                     currentQuestionPlayerAnswers = buildPlayerAnswersString("1", questionCounter, questionNumber, currentCorrectAnswers, allSelectedAnswersPlayer1.get(String.valueOf(questionCounter)));
                     questionAnswered2Player1.setText(currentQuestionPlayerAnswers);
 
                     //Prepare & show answers string for the Player 2
-                    questionAnswered2Player2 = rootView.findViewById(R.id.summary_answer_2_player_2);
+                    TextView questionAnswered2Player2 = rootView.findViewById(R.id.summary_answer_2_player_2);
                     currentQuestionPlayerAnswers = buildPlayerAnswersString("2", questionCounter, questionNumber, currentCorrectAnswers, allSelectedAnswersPlayer2.get(String.valueOf(questionCounter)));
                     questionAnswered2Player2.setText(currentQuestionPlayerAnswers);
 
@@ -297,25 +286,25 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
                     break;
                 case 3:
                     //Find related views
-                    questionExpandButton3 = rootView.findViewById(R.id.question_expand_button_3);
+                    TextView questionExpandButton3 = rootView.findViewById(R.id.question_expand_button_3);
                     questionExpandButton3.setText(currentQuestionText);
                     answersSummary3 = rootView.findViewById(R.id.question_answers_summary_3);
-                    questionAllAnswers3 = rootView.findViewById(R.id.summary_all_answered_answers_3);
+                    TextView questionAllAnswers3 = rootView.findViewById(R.id.summary_all_answered_answers_3);
 
                     //Build correct answers string & set it as visible for the user
                     questionAllAnswers3.setText(buildCorrectAnswersString(questionNumber,
-                                                                          currentQuestionAnswer1, currentQuestionAnswer2, currentQuestionAnswer3, currentQuestionAnswer4));
+                            currentQuestionAnswer1, currentQuestionAnswer2, currentQuestionAnswer3, currentQuestionAnswer4));
 
                     //Get current correct answers array list
                     currentCorrectAnswers = answers.get(questionNumber);
 
                     //Prepare & show answers string for the Player 1
-                    questionAnswered3Player1 = rootView.findViewById(R.id.summary_answer_3_player_1);
+                    TextView questionAnswered3Player1 = rootView.findViewById(R.id.summary_answer_3_player_1);
                     currentQuestionPlayerAnswers = buildPlayerAnswersString("1", questionCounter, questionNumber, currentCorrectAnswers, allSelectedAnswersPlayer1.get(String.valueOf(questionCounter)));
                     questionAnswered3Player1.setText(currentQuestionPlayerAnswers);
 
                     //Prepare & show answers string for the Player 2
-                    questionAnswered3Player2 = rootView.findViewById(R.id.summary_answer_3_player_2);
+                    TextView questionAnswered3Player2 = rootView.findViewById(R.id.summary_answer_3_player_2);
                     currentQuestionPlayerAnswers = buildPlayerAnswersString("2", questionCounter, questionNumber, currentCorrectAnswers, allSelectedAnswersPlayer2.get(String.valueOf(questionCounter)));
                     questionAnswered3Player2.setText(currentQuestionPlayerAnswers);
 
@@ -324,25 +313,25 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
                     break;
                 case 4:
                     //Find related views
-                    questionExpandButton4 = rootView.findViewById(R.id.question_expand_button_4);
+                    TextView questionExpandButton4 = rootView.findViewById(R.id.question_expand_button_4);
                     questionExpandButton4.setText(currentQuestionText);
                     answersSummary4 = rootView.findViewById(R.id.question_answers_summary_4);
-                    questionAllAnswers4 = rootView.findViewById(R.id.summary_all_answered_answers_4);
+                    TextView questionAllAnswers4 = rootView.findViewById(R.id.summary_all_answered_answers_4);
 
                     //Build correct answers string & set it as visible for the user
                     questionAllAnswers4.setText(buildCorrectAnswersString(questionNumber,
-                                                                          currentQuestionAnswer1, currentQuestionAnswer2, currentQuestionAnswer3, currentQuestionAnswer4));
+                            currentQuestionAnswer1, currentQuestionAnswer2, currentQuestionAnswer3, currentQuestionAnswer4));
 
                     //Get current correct answers array list
                     currentCorrectAnswers = answers.get(questionNumber);
 
                     //Prepare & show answers string for the Player 1
-                    questionAnswered4Player1 = rootView.findViewById(R.id.summary_answer_4_player_1);
+                    TextView questionAnswered4Player1 = rootView.findViewById(R.id.summary_answer_4_player_1);
                     currentQuestionPlayerAnswers = buildPlayerAnswersString("1", questionCounter, questionNumber, currentCorrectAnswers, allSelectedAnswersPlayer1.get(String.valueOf(questionCounter)));
                     questionAnswered4Player1.setText(currentQuestionPlayerAnswers);
 
                     //Prepare & show answers string for the Player 2
-                    questionAnswered4Player2 = rootView.findViewById(R.id.summary_answer_4_player_2);
+                    TextView questionAnswered4Player2 = rootView.findViewById(R.id.summary_answer_4_player_2);
                     currentQuestionPlayerAnswers = buildPlayerAnswersString("2", questionCounter, questionNumber, currentCorrectAnswers, allSelectedAnswersPlayer2.get(String.valueOf(questionCounter)));
                     questionAnswered4Player2.setText(currentQuestionPlayerAnswers);
 
@@ -351,25 +340,25 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
                     break;
                 case 5:
                     //Find related views
-                    questionExpandButton5 = rootView.findViewById(R.id.question_expand_button_5);
+                    TextView questionExpandButton5 = rootView.findViewById(R.id.question_expand_button_5);
                     questionExpandButton5.setText(currentQuestionText);
                     answersSummary5 = rootView.findViewById(R.id.question_answers_summary_5);
-                    questionAllAnswers5 = rootView.findViewById(R.id.summary_all_answered_answers_5);
+                    TextView questionAllAnswers5 = rootView.findViewById(R.id.summary_all_answered_answers_5);
 
                     //Build correct answers string & set it as visible for the user
                     questionAllAnswers5.setText(buildCorrectAnswersString(questionNumber,
-                                                                          currentQuestionAnswer1, currentQuestionAnswer2, currentQuestionAnswer3, currentQuestionAnswer4));
+                            currentQuestionAnswer1, currentQuestionAnswer2, currentQuestionAnswer3, currentQuestionAnswer4));
 
                     //Get current correct answers array list
                     currentCorrectAnswers = answers.get(questionNumber);
 
                     //Prepare & show answers string for the Player 1
-                    questionAnswered5Player1 = rootView.findViewById(R.id.summary_answer_5_player_1);
+                    TextView questionAnswered5Player1 = rootView.findViewById(R.id.summary_answer_5_player_1);
                     currentQuestionPlayerAnswers = buildPlayerAnswersString("1", questionCounter, questionNumber, currentCorrectAnswers, allSelectedAnswersPlayer1.get(String.valueOf(questionCounter)));
                     questionAnswered5Player1.setText(currentQuestionPlayerAnswers);
 
                     //Prepare & show answers string for the Player 2
-                    questionAnswered5Player2 = rootView.findViewById(R.id.summary_answer_5_player_2);
+                    TextView questionAnswered5Player2 = rootView.findViewById(R.id.summary_answer_5_player_2);
                     currentQuestionPlayerAnswers = buildPlayerAnswersString("2", questionCounter, questionNumber, currentCorrectAnswers, allSelectedAnswersPlayer2.get(String.valueOf(questionCounter)));
                     questionAnswered5Player2.setText(currentQuestionPlayerAnswers);
 
@@ -382,18 +371,13 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
         //Prepare 'Winner Info' & the final Toast messages
         String finalToastMessage;
         String winnerInfoMessage;
-        if(player1CorrectAnswers == player2CorrectAnswers)
-        {
+        if (player1CorrectAnswers == player2CorrectAnswers) {
             winnerInfoMessage = getString(R.string.winner_info_is_tie);
             finalToastMessage = getString(R.string.final_toast_is_tie, player1CorrectAnswers);
-        }
-        else if(player1CorrectAnswers > player2CorrectAnswers)
-        {
+        } else if (player1CorrectAnswers > player2CorrectAnswers) {
             winnerInfoMessage = getString(R.string.winner_info_no_tie, 1);
             finalToastMessage = getString(R.string.final_toast_no_tie, 1, player1CorrectAnswers, 2, player2CorrectAnswers);
-        }
-        else
-        {
+        } else {
             winnerInfoMessage = getString(R.string.winner_info_no_tie, 2);
             finalToastMessage = getString(R.string.final_toast_no_tie, 2, player2CorrectAnswers, 1, player1CorrectAnswers);
         }
@@ -415,29 +399,27 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
         disableQuestionElements();
 
         //Show final Toast message
-        showToast(finalToastMessage,true, FancyToast.SUCCESS);
+        showToast(finalToastMessage, true, FancyToast.SUCCESS);
     }
 
     /**
      * Build the string with correct answers
      *
-     * @param questionNumber
-     * @param currentQuestionAnswer1
-     * @param currentQuestionAnswer2
-     * @param currentQuestionAnswer3
-     * @param currentQuestionAnswer4
-     *
+     * @param questionNumber         - question number [String]
+     * @param currentQuestionAnswer1 - current question answer [String]
+     * @param currentQuestionAnswer2 - current question answer [String]
+     * @param currentQuestionAnswer3 - current question answer [String]
+     * @param currentQuestionAnswer4 - current question answer [String]
      * @return - Correct answers string
      */
     private String buildCorrectAnswersString(String questionNumber,
-                                             String currentQuestionAnswer1, String currentQuestionAnswer2, String currentQuestionAnswer3, String currentQuestionAnswer4)
-    {
+                                             String currentQuestionAnswer1, String currentQuestionAnswer2, String currentQuestionAnswer3, String currentQuestionAnswer4) {
         //Prepare correct answers string
         StringBuilder oneStringCorrectAnswers = new StringBuilder();
         int answerCounter = 0;
         switch (summaryCurrentQuestionType) {
             case Constants.QUESTION_ANSWER_TYPE_SINGLE_CHOICE_RADIO:
-            case Constants.QUESTION_ANSWER_TYPE_MULIPLE_CHOICE_CHECKBOXES:
+            case Constants.QUESTION_ANSWER_TYPE_MULTIPLE_CHOICE_CHECKBOXES:
                 ArrayList correctAnswersNumbers = answers.get(questionNumber);
 
                 if (correctAnswersNumbers.contains(1)) {
@@ -445,24 +427,21 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
                     answerCounter++;
                 }
                 if (correctAnswersNumbers.contains(2)) {
-                    if(answerCounter > 0)
-                    {
+                    if (answerCounter > 0) {
                         oneStringCorrectAnswers.append(", ");
                     }
                     oneStringCorrectAnswers.append(currentQuestionAnswer2);
                     answerCounter++;
                 }
                 if (correctAnswersNumbers.contains(3)) {
-                    if(answerCounter > 0)
-                    {
+                    if (answerCounter > 0) {
                         oneStringCorrectAnswers.append(", ");
                     }
                     oneStringCorrectAnswers.append(currentQuestionAnswer3);
                     answerCounter++;
                 }
                 if (correctAnswersNumbers.contains(4)) {
-                    if(answerCounter > 0)
-                    {
+                    if (answerCounter > 0) {
                         oneStringCorrectAnswers.append(", ");
                     }
                     oneStringCorrectAnswers.append(currentQuestionAnswer4);
@@ -470,9 +449,9 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
                 break;
             case Constants.QUESTION_ANSWER_TYPE_SINGLE_ANSWER_TEXT:
                 ArrayList possibleAnswers = answers.get(questionNumber);
-                for(Object possibleAnswer : possibleAnswers) {
+                for (Object possibleAnswer : possibleAnswers) {
                     answerCounter++;
-                    if(answerCounter != 1) {
+                    if (answerCounter != 1) {
                         oneStringCorrectAnswers.append(", ");
                     }
                     oneStringCorrectAnswers.append(possibleAnswer.toString());
@@ -487,16 +466,14 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
     /**
      * Build the string with player answers
      *
-     * @param playerNumber
-     * @param questionCounter
-     * @param questionNumber
-     * @param currentCorrectAnswers
-     * @param playerAnswers
-     *
+     * @param playerNumber          - player number [String]
+     * @param questionCounter       - question counter [int]
+     * @param questionNumber        - question number [String]
+     * @param currentCorrectAnswers - current correct answers [ArrayList]
+     * @param playerAnswers         - player answers [String]
      * @return - Player answers string
      */
-    private String buildPlayerAnswersString(String playerNumber, int questionCounter, String questionNumber, ArrayList currentCorrectAnswers, String playerAnswers)
-    {
+    private String buildPlayerAnswersString(String playerNumber, int questionCounter, String questionNumber, ArrayList currentCorrectAnswers, String playerAnswers) {
         //Flag to keep info if answer(s) is correct
         Boolean answerIsCorrect = false;
 
@@ -504,40 +481,38 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
         StringBuilder oneStringPlayerAnswers = new StringBuilder();
         switch (summaryCurrentQuestionType) {
             case Constants.QUESTION_ANSWER_TYPE_SINGLE_CHOICE_RADIO:
-            case Constants.QUESTION_ANSWER_TYPE_MULIPLE_CHOICE_CHECKBOXES:
+            case Constants.QUESTION_ANSWER_TYPE_MULTIPLE_CHOICE_CHECKBOXES:
 
                 List<String> currentQuestionPlayerAnswers = Arrays.asList(playerAnswers.split("_"));
                 int answerCounter = 0;
-                for(Object answeredAnswer : currentQuestionPlayerAnswers) {
+                for (Object answeredAnswer : currentQuestionPlayerAnswers) {
                     answerCounter++;
-                    if(answerCounter != 1) {
+                    if (answerCounter != 1) {
                         oneStringPlayerAnswers.append(", ");
                     }
 
-                    oneStringPlayerAnswers.append(String.valueOf(questions.get(questionNumber).get("answer_"+answeredAnswer)));
+                    oneStringPlayerAnswers.append(String.valueOf(questions.get(questionNumber).get("answer_" + answeredAnswer)));
                 }
 
                 StringBuilder oneStringAnswers = new StringBuilder();
                 answerCounter = 0;
-                for(Object correctAnswer : currentCorrectAnswers) {
+                for (Object correctAnswer : currentCorrectAnswers) {
                     answerCounter++;
-                    if(answerCounter != 1) {
+                    if (answerCounter != 1) {
                         oneStringAnswers.append("_");
                     }
                     oneStringAnswers.append(correctAnswer);
                 }
 
-                if(Objects.equals(new String(oneStringAnswers.toString()), new String(playerAnswers)))
-                {
+                if (Objects.equals(oneStringAnswers.toString(), playerAnswers)) {
                     answerIsCorrect = true;
                 }
 
                 break;
             case Constants.QUESTION_ANSWER_TYPE_SINGLE_ANSWER_TEXT:
                 oneStringPlayerAnswers.append(playerAnswers);
-                for(Object correctAnswer : currentCorrectAnswers) {
-                    if(Objects.equals(new String(correctAnswer.toString().toLowerCase()), new String(playerAnswers.toLowerCase())))
-                    {
+                for (Object correctAnswer : currentCorrectAnswers) {
+                    if (Objects.equals(correctAnswer.toString().toLowerCase(), playerAnswers.toLowerCase())) {
                         answerIsCorrect = true;
                     }
                 }
@@ -545,12 +520,10 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
         }
 
         //Count correct answers for each player
-        if(answerIsCorrect) {
-            if(playerNumber == "1") {
+        if (answerIsCorrect) {
+            if (Objects.equals(playerNumber, "1")) {
                 player1CorrectAnswers++;
-            }
-            else
-            {
+            } else {
                 player2CorrectAnswers++;
             }
         }
@@ -559,8 +532,7 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
         int indicatorId = getResources().getIdentifier(answerIsCorrect ? "indicator_correct_answer" : "indicator_wrong_answer", "drawable", getPackageName());
 
         //Show correct indicator image
-        if(playerNumber == "1")
-        {
+        if (Objects.equals(playerNumber, "1")) {
             switch (questionCounter) {
                 case 1:
                     indicatorQuestion1Player1.setImageResource(indicatorId);
@@ -578,9 +550,7 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
                     indicatorQuestion5Player1.setImageResource(indicatorId);
                     break;
             }
-        }
-        else
-        {
+        } else {
             switch (questionCounter) {
                 case 1:
                     indicatorQuestion1Player2.setImageResource(indicatorId);
@@ -628,12 +598,12 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
     /**
      * onClick method
      *
-     * @param v
+     * @param v - view [View]
      */
     @Override
     public void onClick(View v) {
         //Perform on click action
-        switch(v.getId()) {
+        switch (v.getId()) {
             case R.id.button_continue:
                 //Confirm answer & generate the question for the next player
                 confirmAndGenerateQuestion();
@@ -641,27 +611,47 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
         }
 
         if (v.getId() == R.id.question_expand_button_1) {
-            if(answersSummary1.isExpanded()) { answersSummary1.collapse(); } else { collapseAllSummaryTabs(); answersSummary1.expand(); }
-        }
-        else if (v.getId() == R.id.question_expand_button_2) {
-            if(answersSummary2.isExpanded()) { answersSummary2.collapse(); } else { collapseAllSummaryTabs(); answersSummary2.expand(); }
-        }
-        else if (v.getId() == R.id.question_expand_button_3) {
-            if(answersSummary3.isExpanded()) { answersSummary3.collapse(); } else { collapseAllSummaryTabs(); answersSummary3.expand(); }
-        }
-        else if (v.getId() == R.id.question_expand_button_4) {
-            if(answersSummary4.isExpanded()) { answersSummary4.collapse(); } else { collapseAllSummaryTabs(); answersSummary4.expand(); }
-        }
-        else if (v.getId() == R.id.question_expand_button_5) {
-            if(answersSummary5.isExpanded()) { answersSummary5.collapse(); } else { collapseAllSummaryTabs(); answersSummary5.expand(); }
+            if (answersSummary1.isExpanded()) {
+                answersSummary1.collapse();
+            } else {
+                collapseAllSummaryTabs();
+                answersSummary1.expand();
+            }
+        } else if (v.getId() == R.id.question_expand_button_2) {
+            if (answersSummary2.isExpanded()) {
+                answersSummary2.collapse();
+            } else {
+                collapseAllSummaryTabs();
+                answersSummary2.expand();
+            }
+        } else if (v.getId() == R.id.question_expand_button_3) {
+            if (answersSummary3.isExpanded()) {
+                answersSummary3.collapse();
+            } else {
+                collapseAllSummaryTabs();
+                answersSummary3.expand();
+            }
+        } else if (v.getId() == R.id.question_expand_button_4) {
+            if (answersSummary4.isExpanded()) {
+                answersSummary4.collapse();
+            } else {
+                collapseAllSummaryTabs();
+                answersSummary4.expand();
+            }
+        } else if (v.getId() == R.id.question_expand_button_5) {
+            if (answersSummary5.isExpanded()) {
+                answersSummary5.collapse();
+            } else {
+                collapseAllSummaryTabs();
+                answersSummary5.expand();
+            }
         }
     }
 
     /**
      * Collapse all 'Answers Summary' tabs
      */
-    private void collapseAllSummaryTabs()
-    {
+    private void collapseAllSummaryTabs() {
         answersSummary1.collapse();
         answersSummary2.collapse();
         answersSummary3.collapse();
@@ -674,30 +664,24 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
      */
     private void confirmAndGenerateQuestion() {
         //If question has been answered
-        if(questionAnswered())
-        {
+        if (questionAnswered()) {
             //Show summary if all question answered already
-            if(answersTotal == Constants.MAX_ANSWERS)
-            {
+            if (answersTotal == Constants.MAX_ANSWERS) {
                 //Hide 'Continue' button
                 buttonContinue.setVisibility(View.INVISIBLE);
 
                 //Inflate 'Answers Summary'
                 inflateSummary();
-            }
-            else
-            {
+            } else {
                 //Generate new random question
                 getRandomQuestion(false);
 
                 //Show 'Next Player' view
                 showNextPlayerView(false);
             }
-        }
-        else
-        {
+        } else {
             //Show Toast when question is not answered yet
-            showToast(getString(R.string.not_answered_question),false, FancyToast.WARNING);
+            showToast(getString(R.string.not_answered_question), false, FancyToast.WARNING);
         }
     }
 
@@ -706,7 +690,7 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
      */
     private void getRandomQuestion(boolean onCreate) {
         //Make sure that question is not generated multiple times on creation (in case if the first continue button was clicked very quickly)
-        if(!onCreate || !onCreateQuestionGenerated) {
+        if (!onCreate || !onCreateQuestionGenerated) {
             //Make sure that there are still questions available & change question only when current player is 'Player 1'
             if (questionsToUse.size() > 0 && currentPlayer == 1) {
                 //Increment current question counter
@@ -726,7 +710,7 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
                 questionsToUse.remove(randomIndex);
 
                 //Set question text
-                QuestionView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_QUESTION)));
+                questionView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_QUESTION)));
 
                 //Show question image
                 int questionImageId = getResources().getIdentifier("question_" + randomQuestionNumber, "drawable", getPackageName());
@@ -735,51 +719,51 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
 
                 //Handle answer elements visibility
                 //If single choice radio question
-                AnswerRadiosView.setVisibility(View.GONE);
-                AnswerCheckboxesView.setVisibility(View.GONE);
-                AnswerEditTextView.setVisibility(View.GONE);
+                answerRadiosView.setVisibility(View.GONE);
+                answerCheckboxesView.setVisibility(View.GONE);
+                answerEditTextView.setVisibility(View.GONE);
                 if (Arrays.asList(singleChoiceRadioQuestions).contains(randomQuestionNumber)) {
                     quizLastQuestionType = Constants.QUESTION_ANSWER_TYPE_SINGLE_CHOICE_RADIO;
 
-                    AnswerRadiosView.setVisibility(View.VISIBLE);
+                    answerRadiosView.setVisibility(View.VISIBLE);
 
-                    Answer1RadioView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_1)));
-                    Answer2RadioView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_2)));
-                    Answer3RadioView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_3)));
-                    Answer4RadioView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_4)));
+                    answer1RadioView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_1)));
+                    answer2RadioView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_2)));
+                    answer3RadioView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_3)));
+                    answer4RadioView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_4)));
                 }
                 //If multi choice checkbox question
                 else if (Arrays.asList(multipleChoiceCheckboxQuestions).contains(randomQuestionNumber)) {
-                    quizLastQuestionType = Constants.QUESTION_ANSWER_TYPE_MULIPLE_CHOICE_CHECKBOXES;
+                    quizLastQuestionType = Constants.QUESTION_ANSWER_TYPE_MULTIPLE_CHOICE_CHECKBOXES;
 
-                    AnswerCheckboxesView.setVisibility(View.VISIBLE);
+                    answerCheckboxesView.setVisibility(View.VISIBLE);
 
-                    Answer1CheckBoxView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_1)));
-                    Answer2CheckBoxView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_2)));
-                    Answer3CheckBoxView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_3)));
-                    Answer4CheckBoxView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_4)));
+                    answer1CheckBoxView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_1)));
+                    answer2CheckBoxView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_2)));
+                    answer3CheckBoxView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_3)));
+                    answer4CheckBoxView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_4)));
                 }
                 //If single answer text question
                 else if (Arrays.asList(singleAnswerTextQuestions).contains(randomQuestionNumber)) {
                     quizLastQuestionType = Constants.QUESTION_ANSWER_TYPE_SINGLE_ANSWER_TEXT;
 
-                    AnswerEditTextView.setVisibility(View.VISIBLE);
+                    answerEditTextView.setVisibility(View.VISIBLE);
                 }
 
                 //Change 'stepper' step
-                stepperIndicator.setCurrentStep(currentQuestion-1);
+                stepperIndicator.setCurrentStep(currentQuestion - 1);
             }
 
             //Clear answer elements values
-            AnswerRadiosView.clearCheck();
-            Answer1CheckBoxView.setChecked(false);
-            Answer2CheckBoxView.setChecked(false);
-            Answer3CheckBoxView.setChecked(false);
-            Answer4CheckBoxView.setChecked(false);
-            AnswerEditTextView.setText("");
+            answerRadiosView.clearCheck();
+            answer1CheckBoxView.setChecked(false);
+            answer2CheckBoxView.setChecked(false);
+            answer3CheckBoxView.setChecked(false);
+            answer4CheckBoxView.setChecked(false);
+            answerEditTextView.setText("");
 
             //Update main heading
-            MainHeadingView.setText(getString(R.string.current_player, currentPlayer, currentQuestion));
+            mainHeadingView.setText(getString(R.string.current_player, currentPlayer, currentQuestion));
 
             //Change player
             currentPlayer = currentPlayer == 1 ? 2 : 1;
@@ -789,7 +773,7 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
         }
 
         //Update onCreateQuestionGenerated flag if question is generated on creation
-        if(onCreate) {
+        if (onCreate) {
             onCreateQuestionGenerated = true;
         }
     }
@@ -797,7 +781,9 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
     /**
      * Show toast
      *
-     * @param text
+     * @param text         - Toast text [String]
+     * @param longDuration - if long duration [Boolean]
+     * @param type         - Toast type [int]
      */
     private void showToast(String text, Boolean longDuration, int type) {
         int duration = longDuration ? FancyToast.LENGTH_LONG : FancyToast.LENGTH_SHORT;
@@ -820,53 +806,46 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
         HashMap<String, String> previousPlayerSelectedAnswers = allSelectedAnswers.get("player_" + playerWhoAnswered);
 
         //Set playerSelectedAnswers as previousPlayerSelectedAnswers
-        if(previousPlayerSelectedAnswers != null && !previousPlayerSelectedAnswers.isEmpty())
-        {
+        if (previousPlayerSelectedAnswers != null && !previousPlayerSelectedAnswers.isEmpty()) {
             playerSelectedAnswers = previousPlayerSelectedAnswers;
         }
 
         //Check if question is answered & remember answers
         switch (quizLastQuestionType) {
             case Constants.QUESTION_ANSWER_TYPE_SINGLE_CHOICE_RADIO:
-                int answerRadioButtonId = AnswerRadiosView.getCheckedRadioButtonId();
-                if(answerRadioButtonId == -1)
-                {
+                int answerRadioButtonId = answerRadiosView.getCheckedRadioButtonId();
+                if (answerRadioButtonId == -1) {
                     return false;
-                }
-                else
-                {
+                } else {
                     RadioButton answerRadioButton = findViewById(answerRadioButtonId);
                     int answerId = Integer.parseInt(answerRadioButton.getTag().toString());
 
                     playerSelectedAnswers.put(String.valueOf(currentQuestion), String.valueOf(answerId));
                 }
                 break;
-            case Constants.QUESTION_ANSWER_TYPE_MULIPLE_CHOICE_CHECKBOXES:
-                if(!Answer1CheckBoxView.isChecked() && !Answer2CheckBoxView.isChecked() && !Answer3CheckBoxView.isChecked() && !Answer4CheckBoxView.isChecked())
-                {
+            case Constants.QUESTION_ANSWER_TYPE_MULTIPLE_CHOICE_CHECKBOXES:
+                if (!answer1CheckBoxView.isChecked() && !answer2CheckBoxView.isChecked() && !answer3CheckBoxView.isChecked() && !answer4CheckBoxView.isChecked()) {
                     return false;
-                }
-                else
-                {
-                    ArrayList<String> selectedCheckboxAnswers = new ArrayList<String>();
-                    if(Answer1CheckBoxView.isChecked()) {
+                } else {
+                    ArrayList<String> selectedCheckboxAnswers = new ArrayList<>();
+                    if (answer1CheckBoxView.isChecked()) {
                         selectedCheckboxAnswers.add("1");
                     }
-                    if(Answer2CheckBoxView.isChecked()) {
+                    if (answer2CheckBoxView.isChecked()) {
                         selectedCheckboxAnswers.add("2");
                     }
-                    if(Answer3CheckBoxView.isChecked()) {
+                    if (answer3CheckBoxView.isChecked()) {
                         selectedCheckboxAnswers.add("3");
                     }
-                    if(Answer4CheckBoxView.isChecked()) {
+                    if (answer4CheckBoxView.isChecked()) {
                         selectedCheckboxAnswers.add("4");
                     }
                     //Convert the ArrayList to String
                     StringBuilder oneStringAnswers = new StringBuilder();
                     int answerCounter = 0;
-                    for( String answerId : selectedCheckboxAnswers) {
+                    for (String answerId : selectedCheckboxAnswers) {
                         answerCounter++;
-                        if(answerCounter != 1) {
+                        if (answerCounter != 1) {
                             oneStringAnswers.append("_");
                         }
                         oneStringAnswers.append(answerId);
@@ -876,13 +855,10 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
                 }
                 break;
             case Constants.QUESTION_ANSWER_TYPE_SINGLE_ANSWER_TEXT:
-                String answerText = AnswerEditTextView.getText().toString().trim();
-                if(answerText.isEmpty())
-                {
+                String answerText = answerEditTextView.getText().toString().trim();
+                if (answerText.isEmpty()) {
                     return false;
-                }
-                else
-                {
+                } else {
                     playerSelectedAnswers.put(String.valueOf(currentQuestion), answerText);
                 }
                 break;
@@ -909,11 +885,10 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
         nextPlayerView.setVisibility(View.VISIBLE);
 
         //Show message with the next player info
-        String infoMessage = "";
-        if(onCreate) {
+        String infoMessage;
+        if (onCreate) {
             infoMessage = getString(R.string.next_player_info, 1);
-        }
-        else {
+        } else {
             infoMessage = getString(R.string.next_player_info, (currentPlayer == 1 ? 2 : 1));
         }
         nextPlayerInfoView.setText(infoMessage);
@@ -925,20 +900,20 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
     private void disableQuestionElements() {
         switch (quizLastQuestionType) {
             case Constants.QUESTION_ANSWER_TYPE_SINGLE_CHOICE_RADIO:
-                Answer1RadioView.setEnabled(false);
-                Answer2RadioView.setEnabled(false);
-                Answer3RadioView.setEnabled(false);
-                Answer4RadioView.setEnabled(false);
+                answer1RadioView.setEnabled(false);
+                answer2RadioView.setEnabled(false);
+                answer3RadioView.setEnabled(false);
+                answer4RadioView.setEnabled(false);
                 break;
-            case Constants.QUESTION_ANSWER_TYPE_MULIPLE_CHOICE_CHECKBOXES:
-                Answer1CheckBoxView.setEnabled(false);
-                Answer2CheckBoxView.setEnabled(false);
-                Answer3CheckBoxView.setEnabled(false);
-                Answer4CheckBoxView.setEnabled(false);
+            case Constants.QUESTION_ANSWER_TYPE_MULTIPLE_CHOICE_CHECKBOXES:
+                answer1CheckBoxView.setEnabled(false);
+                answer2CheckBoxView.setEnabled(false);
+                answer3CheckBoxView.setEnabled(false);
+                answer4CheckBoxView.setEnabled(false);
                 break;
             case Constants.QUESTION_ANSWER_TYPE_SINGLE_ANSWER_TEXT:
-                AnswerEditTextView.setEnabled(false);
-                AnswerEditTextView.setVisibility(View.GONE);
+                answerEditTextView.setEnabled(false);
+                answerEditTextView.setVisibility(View.GONE);
                 break;
         }
     }
@@ -952,21 +927,21 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
         //Make sure that answers view is available
         switch (quizLastQuestionType) {
             case Constants.QUESTION_ANSWER_TYPE_SINGLE_CHOICE_RADIO:
-                Answer1RadioView.setEnabled(true);
-                Answer2RadioView.setEnabled(true);
-                Answer3RadioView.setEnabled(true);
-                Answer4RadioView.setEnabled(true);
+                answer1RadioView.setEnabled(true);
+                answer2RadioView.setEnabled(true);
+                answer3RadioView.setEnabled(true);
+                answer4RadioView.setEnabled(true);
                 break;
-            case Constants.QUESTION_ANSWER_TYPE_MULIPLE_CHOICE_CHECKBOXES:
-                Answer1CheckBoxView.setEnabled(true);
-                Answer2CheckBoxView.setEnabled(true);
-                Answer3CheckBoxView.setEnabled(true);
-                Answer4CheckBoxView.setEnabled(true);
+            case Constants.QUESTION_ANSWER_TYPE_MULTIPLE_CHOICE_CHECKBOXES:
+                answer1CheckBoxView.setEnabled(true);
+                answer2CheckBoxView.setEnabled(true);
+                answer3CheckBoxView.setEnabled(true);
+                answer4CheckBoxView.setEnabled(true);
                 break;
             case Constants.QUESTION_ANSWER_TYPE_SINGLE_ANSWER_TEXT:
-                AnswerEditTextView.setEnabled(true);
-                AnswerEditTextView.setVisibility(View.VISIBLE);
-                AnswerEditTextView.setText("");
+                answerEditTextView.setEnabled(true);
+                answerEditTextView.setVisibility(View.VISIBLE);
+                answerEditTextView.setText("");
                 break;
         }
 
@@ -983,8 +958,8 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
 
         //Reset data
         allSelectedAnswers = new HashMap<>();
-        alreadyUsedQuestions = new ArrayList<String>();
-        questionsToUse = new ArrayList<String>();
+        alreadyUsedQuestions = new ArrayList<>();
+        questionsToUse = new ArrayList<>();
         currentPlayer = 1;
         currentQuestion = 0;
         answersTotal = 0;
@@ -1003,15 +978,13 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
     /**
      * Set questions and the corresponding answers (each answer has its index - indexes are starting from 1)
      */
-    private void setQuestionsData()
-    {
+    private void setQuestionsData() {
         //Declare hash map for values
         HashMap<String, String> value = new HashMap<>();
 
         //Single choice radio questions
-        for(String questionIndex : singleChoiceRadioQuestions){
-            if(questionIndex != "1")
-            {
+        for (String questionIndex : singleChoiceRadioQuestions) {
+            if (!Objects.equals(questionIndex, "1")) {
                 value = new HashMap<>();
             }
             String question = "question_" + questionIndex;
@@ -1034,7 +1007,7 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
         }
 
         //Multiple choice checkbox questions
-        for(String questionIndex : multipleChoiceCheckboxQuestions){
+        for (String questionIndex : multipleChoiceCheckboxQuestions) {
             value = new HashMap<>();
             String question = "question_" + questionIndex;
             int questionId = getResources().getIdentifier(question, "string", getPackageName());
@@ -1051,12 +1024,12 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
             questionAnswer = "question_" + questionIndex + "_answer_4";
             questionAnswerId = getResources().getIdentifier(questionAnswer, "string", getPackageName());
             value.put(Constants.QUESTION_KEY_ANSWER_4, getString(questionAnswerId));
-            value.put(Constants.QUESTION_KEY_ANSWER_TYPE, Constants.QUESTION_ANSWER_TYPE_MULIPLE_CHOICE_CHECKBOXES);
+            value.put(Constants.QUESTION_KEY_ANSWER_TYPE, Constants.QUESTION_ANSWER_TYPE_MULTIPLE_CHOICE_CHECKBOXES);
             questions.put(questionIndex, value);
         }
 
         //Single answer text questions
-        for(String questionIndex : singleAnswerTextQuestions){
+        for (String questionIndex : singleAnswerTextQuestions) {
             value = new HashMap<>();
             String question = "question_" + questionIndex;
             int questionId = getResources().getIdentifier(question, "string", getPackageName());
@@ -1066,303 +1039,303 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
         }
 
         //Answer indexes for Question 1
-        ArrayList correct_answer = new ArrayList();
-        correct_answer.add(3);
-        answers.put("1", correct_answer);
+        ArrayList correctAnswer = new ArrayList();
+        correctAnswer.add(3);
+        answers.put("1", correctAnswer);
 
         //Answer indexes for Question 2
-        correct_answer = new ArrayList();
-        correct_answer.add(3);
-        answers.put("2", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(3);
+        answers.put("2", correctAnswer);
 
         //Answer indexes for Question 3
-        correct_answer = new ArrayList();
-        correct_answer.add(1);
-        answers.put("3", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(1);
+        answers.put("3", correctAnswer);
 
         //Answer indexes for Question 4
-        correct_answer = new ArrayList();
-        correct_answer.add(1);
-        answers.put("4", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(1);
+        answers.put("4", correctAnswer);
 
         //Answer indexes for Question 5
-        correct_answer = new ArrayList();
-        correct_answer.add(4);
-        answers.put("5", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(4);
+        answers.put("5", correctAnswer);
 
         //Answer indexes for Question 6
-        correct_answer = new ArrayList();
-        correct_answer.add(2);
-        answers.put("6", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(2);
+        answers.put("6", correctAnswer);
 
         //Answer indexes for Question 7
-        correct_answer = new ArrayList();
-        correct_answer.add(2);
-        answers.put("7", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(2);
+        answers.put("7", correctAnswer);
 
         //Answer indexes for Question 8
-        correct_answer = new ArrayList();
-        correct_answer.add(2);
-        answers.put("8", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(2);
+        answers.put("8", correctAnswer);
 
         //Answer indexes for Question 9
-        correct_answer = new ArrayList();
-        correct_answer.add(3);
-        answers.put("9", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(3);
+        answers.put("9", correctAnswer);
 
         //Answer indexes for Question 10
-        correct_answer = new ArrayList();
-        correct_answer.add(3);
-        answers.put("10", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(3);
+        answers.put("10", correctAnswer);
 
         //Answer indexes for Question 11
-        correct_answer = new ArrayList();
-        correct_answer.add(1);
-        correct_answer.add(2);
-        correct_answer.add(4);
-        answers.put("11", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(1);
+        correctAnswer.add(2);
+        correctAnswer.add(4);
+        answers.put("11", correctAnswer);
 
         //Answer indexes for Question 12
-        correct_answer = new ArrayList();
-        correct_answer.add(getString(R.string.question_12_answer_1));
-        correct_answer.add(getString(R.string.question_12_answer_1_alt));
-        answers.put("12", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(getString(R.string.question_12_answer_1));
+        correctAnswer.add(getString(R.string.question_12_answer_1_alt));
+        answers.put("12", correctAnswer);
 
         //Answer indexes for Question 13
-        correct_answer = new ArrayList();
-        correct_answer.add(3);
-        answers.put("13", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(3);
+        answers.put("13", correctAnswer);
 
         //Answer indexes for Question 14
-        correct_answer = new ArrayList();
-        correct_answer.add(getString(R.string.question_14_answer_1));
-        answers.put("14", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(getString(R.string.question_14_answer_1));
+        answers.put("14", correctAnswer);
 
         //Answer indexes for Question 15
-        correct_answer = new ArrayList();
-        correct_answer.add(1);
-        correct_answer.add(4);
-        answers.put("15", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(1);
+        correctAnswer.add(4);
+        answers.put("15", correctAnswer);
 
         //Answer indexes for Question 16
-        correct_answer = new ArrayList();
-        correct_answer.add(1);
-        answers.put("16", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(1);
+        answers.put("16", correctAnswer);
 
         //Answer indexes for Question 17
-        correct_answer = new ArrayList();
-        correct_answer.add(3);
-        answers.put("17", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(3);
+        answers.put("17", correctAnswer);
 
         //Answer indexes for Question 18
-        correct_answer = new ArrayList();
-        correct_answer.add(1);
-        correct_answer.add(2);
-        correct_answer.add(3);
-        answers.put("18", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(1);
+        correctAnswer.add(2);
+        correctAnswer.add(3);
+        answers.put("18", correctAnswer);
 
         //Answer indexes for Question 19
-        correct_answer = new ArrayList();
-        correct_answer.add(getString(R.string.question_19_answer_1));
-        correct_answer.add(getString(R.string.question_19_answer_1_alt));
-        answers.put("19", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(getString(R.string.question_19_answer_1));
+        correctAnswer.add(getString(R.string.question_19_answer_1_alt));
+        answers.put("19", correctAnswer);
 
         //Answer indexes for Question 20
-        correct_answer = new ArrayList();
-        correct_answer.add(3);
-        answers.put("20", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(3);
+        answers.put("20", correctAnswer);
 
         //Answer indexes for Question 21
-        correct_answer = new ArrayList();
-        correct_answer.add(getString(R.string.question_21_answer_1));
-        answers.put("21", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(getString(R.string.question_21_answer_1));
+        answers.put("21", correctAnswer);
 
         //Answer indexes for Question 22
-        correct_answer = new ArrayList();
-        correct_answer.add(1);
-        correct_answer.add(2);
-        correct_answer.add(3);
-        answers.put("22", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(1);
+        correctAnswer.add(2);
+        correctAnswer.add(3);
+        answers.put("22", correctAnswer);
 
         //Answer indexes for Question 23
-        correct_answer = new ArrayList();
-        correct_answer.add(1);
-        answers.put("23", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(1);
+        answers.put("23", correctAnswer);
 
         //Answer indexes for Question 24
-        correct_answer = new ArrayList();
-        correct_answer.add(1);
-        correct_answer.add(2);
-        correct_answer.add(4);
-        answers.put("24", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(1);
+        correctAnswer.add(2);
+        correctAnswer.add(4);
+        answers.put("24", correctAnswer);
 
         //Answer indexes for Question 25
-        correct_answer = new ArrayList();
-        correct_answer.add(1);
-        answers.put("25", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(1);
+        answers.put("25", correctAnswer);
 
         //Answer indexes for Question 26
-        correct_answer = new ArrayList();
-        correct_answer.add(2);
-        answers.put("26", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(2);
+        answers.put("26", correctAnswer);
 
         //Answer indexes for Question 27
-        correct_answer = new ArrayList();
-        correct_answer.add(getString(R.string.question_27_answer_1));
-        answers.put("27", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(getString(R.string.question_27_answer_1));
+        answers.put("27", correctAnswer);
 
         //Answer indexes for Question 28
-        correct_answer = new ArrayList();
-        correct_answer.add(3);
-        answers.put("28", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(3);
+        answers.put("28", correctAnswer);
 
         //Answer indexes for Question 29
-        correct_answer = new ArrayList();
-        correct_answer.add(1);
-        correct_answer.add(3);
-        correct_answer.add(4);
-        answers.put("29", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(1);
+        correctAnswer.add(3);
+        correctAnswer.add(4);
+        answers.put("29", correctAnswer);
 
         //Answer indexes for Question 30
-        correct_answer = new ArrayList();
-        correct_answer.add(2);
-        answers.put("30", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(2);
+        answers.put("30", correctAnswer);
 
         //Answer indexes for Question 31
-        correct_answer = new ArrayList();
-        correct_answer.add(2);
-        answers.put("31", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(2);
+        answers.put("31", correctAnswer);
 
         //Answer indexes for Question 32
-        correct_answer = new ArrayList();
-        correct_answer.add(getString(R.string.question_32_answer_1));
-        answers.put("32", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(getString(R.string.question_32_answer_1));
+        answers.put("32", correctAnswer);
 
         //Answer indexes for Question 33
-        correct_answer = new ArrayList();
-        correct_answer.add(3);
-        answers.put("33", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(3);
+        answers.put("33", correctAnswer);
 
         //Answer indexes for Question 34
-        correct_answer = new ArrayList();
-        correct_answer.add(1);
-        correct_answer.add(2);
-        correct_answer.add(4);
-        answers.put("34", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(1);
+        correctAnswer.add(2);
+        correctAnswer.add(4);
+        answers.put("34", correctAnswer);
 
         //Answer indexes for Question 35
-        correct_answer = new ArrayList();
-        correct_answer.add(1);
-        answers.put("35", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(1);
+        answers.put("35", correctAnswer);
 
         //Answer indexes for Question 36
-        correct_answer = new ArrayList();
-        correct_answer.add(2);
-        answers.put("36", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(2);
+        answers.put("36", correctAnswer);
 
         //Answer indexes for Question 37
-        correct_answer = new ArrayList();
-        correct_answer.add(1);
-        answers.put("37", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(1);
+        answers.put("37", correctAnswer);
 
         //Answer indexes for Question 38
-        correct_answer = new ArrayList();
-        correct_answer.add(getString(R.string.question_38_answer_1));
-        answers.put("38", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(getString(R.string.question_38_answer_1));
+        answers.put("38", correctAnswer);
 
         //Answer indexes for Question 39
-        correct_answer = new ArrayList();
-        correct_answer.add(1);
-        answers.put("39", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(1);
+        answers.put("39", correctAnswer);
 
         //Answer indexes for Question 40
-        correct_answer = new ArrayList();
-        correct_answer.add(getString(R.string.question_40_answer_1));
-        answers.put("40", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(getString(R.string.question_40_answer_1));
+        answers.put("40", correctAnswer);
 
         //Answer indexes for Question 41
-        correct_answer = new ArrayList();
-        correct_answer.add(2);
-        answers.put("41", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(2);
+        answers.put("41", correctAnswer);
 
         //Answer indexes for Question 42
-        correct_answer = new ArrayList();
-        correct_answer.add(getString(R.string.question_42_answer_1));
-        answers.put("42", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(getString(R.string.question_42_answer_1));
+        answers.put("42", correctAnswer);
 
         //Answer indexes for Question 43
-        correct_answer = new ArrayList();
-        correct_answer.add(2);
-        answers.put("43", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(2);
+        answers.put("43", correctAnswer);
 
         //Answer indexes for Question 44
-        correct_answer = new ArrayList();
-        correct_answer.add(1);
-        correct_answer.add(2);
-        correct_answer.add(4);
-        answers.put("44", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(1);
+        correctAnswer.add(2);
+        correctAnswer.add(4);
+        answers.put("44", correctAnswer);
 
         //Answer indexes for Question 45
-        correct_answer = new ArrayList();
-        correct_answer.add(getString(R.string.question_45_answer_1));
-        answers.put("45", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(getString(R.string.question_45_answer_1));
+        answers.put("45", correctAnswer);
 
         //Answer indexes for Question 46
-        correct_answer = new ArrayList();
-        correct_answer.add(2);
-        answers.put("46", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(2);
+        answers.put("46", correctAnswer);
 
         //Answer indexes for Question 47
-        correct_answer = new ArrayList();
-        correct_answer.add(4);
-        answers.put("47", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(4);
+        answers.put("47", correctAnswer);
 
         //Answer indexes for Question 48
-        correct_answer = new ArrayList();
-        correct_answer.add(2);
-        answers.put("48", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(2);
+        answers.put("48", correctAnswer);
 
         //Answer indexes for Question 49
-        correct_answer = new ArrayList();
-        correct_answer.add(3);
-        answers.put("49", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(3);
+        answers.put("49", correctAnswer);
 
         //Answer indexes for Question 50
-        correct_answer = new ArrayList();
-        correct_answer.add(1);
-        answers.put("50", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(1);
+        answers.put("50", correctAnswer);
 
         //Answer indexes for Question 51
-        correct_answer = new ArrayList();
-        correct_answer.add(getString(R.string.question_51_answer_1));
-        correct_answer.add(getString(R.string.question_51_answer_1_alt));
-        answers.put("51", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(getString(R.string.question_51_answer_1));
+        correctAnswer.add(getString(R.string.question_51_answer_1_alt));
+        answers.put("51", correctAnswer);
 
         //Answer indexes for Question 52
-        correct_answer = new ArrayList();
-        correct_answer.add(2);
-        answers.put("52", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(2);
+        answers.put("52", correctAnswer);
 
         //Answer indexes for Question 53
-        correct_answer = new ArrayList();
-        correct_answer.add(getString(R.string.question_53_answer_1));
-        correct_answer.add(getString(R.string.question_53_answer_1_alt));
-        correct_answer.add(getString(R.string.question_53_answer_1_alt_2));
-        answers.put("53", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(getString(R.string.question_53_answer_1));
+        correctAnswer.add(getString(R.string.question_53_answer_1_alt));
+        correctAnswer.add(getString(R.string.question_53_answer_1_alt_2));
+        answers.put("53", correctAnswer);
 
         //Answer indexes for Question 54
-        correct_answer = new ArrayList();
-        correct_answer.add(1);
-        correct_answer.add(2);
-        correct_answer.add(3);
-        answers.put("54", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(1);
+        correctAnswer.add(2);
+        correctAnswer.add(3);
+        answers.put("54", correctAnswer);
 
         //Answer indexes for Question 55
-        correct_answer = new ArrayList();
-        correct_answer.add(1);
-        correct_answer.add(3);
-        correct_answer.add(4);
-        answers.put("55", correct_answer);
+        correctAnswer = new ArrayList();
+        correctAnswer.add(1);
+        correctAnswer.add(3);
+        correctAnswer.add(4);
+        answers.put("55", correctAnswer);
     }
 
     /**
