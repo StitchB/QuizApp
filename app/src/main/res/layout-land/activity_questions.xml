@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchParent"
+    tools:context=".QuestionsActivity">
+
+    <!-- Main background -->
+    <ImageView
+        android:id="@+id/background"
+        android:src="@drawable/bg2"
+        style="@style/MainBackground"
+        android:contentDescription="@string/background" />
+
+    <!-- Stepper indicator -->
+    <com.badoualy.stepperindicator.StepperIndicator
+        android:id="@+id/stepper_indicator"
+        style="@style/StepperIndicator"
+        app:stpi_indicatorColor="@color/shadowColor"
+        app:stpi_circleColor="@color/colorPrimary"
+        app:stpi_stepCount="5"/>
+
+    <!-- Answers -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/stepper_indicator">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Main Heading text -->
+            <TextView
+                android:id="@+id/main_heading"
+                style="@style/MainHeading"
+                android:text="" />
+
+            <!-- Question Image -->
+            <ImageView
+                android:id="@+id/question_image"
+                style="@style/QuestionImage"
+                android:contentDescription="@string/question_image" />
+
+            <!-- Question Text -->
+            <TextView
+                android:id="@+id/question"
+                style="@style/Question"
+                android:text="@string/question_1_label" />
+
+            <RadioGroup
+                android:id="@+id/answers_r"
+                style="@style/AnswersRadioGroup">
+                <RadioButton
+                    android:id="@+id/answer_1_r"
+                    style="@style/RadioAnswer"
+                    android:text="@string/answer_1_label"
+                    android:tag="1" />
+                <RadioButton
+                    android:id="@+id/answer_2_r"
+                    style="@style/RadioAnswer"
+                    android:text="@string/answer_2_label"
+                    android:tag="2" />
+                <RadioButton
+                    android:id="@+id/answer_3_r"
+                    style="@style/RadioAnswer"
+                    android:text="@string/answer_3_label"
+                    android:tag="3" />
+                <RadioButton
+                    android:id="@+id/answer_4_r"
+                    style="@style/RadioAnswer"
+                    android:text="@string/answer_4_label"
+                    android:tag="4" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/answers_c"
+                style="@style/AnswersCheckboxGroup">
+                <CheckBox
+                    android:id="@+id/answer_1_c"
+                    style="@style/CheckboxAnswer"
+                    android:text="@string/answer_1_label"
+                    android:tag="1" />
+                <CheckBox
+                    android:id="@+id/answer_2_c"
+                    style="@style/CheckboxAnswer"
+                    android:text="@string/answer_2_label"
+                    android:tag="2" />
+                <CheckBox
+                    android:id="@+id/answer_3_c"
+                    style="@style/CheckboxAnswer"
+                    android:text="@string/answer_3_label"
+                    android:tag="3" />
+                <CheckBox
+                    android:id="@+id/answer_4_c"
+                    style="@style/CheckboxAnswer"
+                    android:text="@string/answer_4_label"
+                    android:tag="4" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/answer_e"
+                style="@style/TextAnswer"
+                android:hint="@string/text_answer_hint"
+                android:inputType="text" />
+
+            <!-- Button for accepting answers -->
+            <ImageButton
+                android:id="@+id/button_continue"
+                android:src="@drawable/selector_continue_button"
+                style="@style/NextQuestionContinue"
+                android:contentDescription="@string/continue_button" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Next player card view -->
+    <android.support.v7.widget.CardView
+        android:id="@+id/next_player_card_view"
+        style="@style/NextPlayerCardView"
+        card_view:cardCornerRadius="@dimen/standardSpacing">
+
+        <!-- Next player card view group -->
+        <RelativeLayout
+            android:id="@+id/next_player_card_inner_layout"
+            style="@style/MatchParent">
+
+            <!-- Next player image -->
+            <com.makeramen.roundedimageview.RoundedImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/next_player_image"
+                style="@style/NextPlayerImage"
+                app:riv_corner_radius="@dimen/standardSpacing"
+                android:scaleType="centerCrop" />
+
+            <!-- Next player info-->
+            <TextView
+                android:id="@+id/next_player_info"
+                style="@style/NextPlayerInfo" />
+
+            <!-- Next player button -->
+            <ImageButton
+                android:id="@+id/next_player_continue"
+                android:src="@drawable/selector_continue_button"
+                style="@style/NextPlayerContinue"
+                android:contentDescription="@string/continue_button" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <!-- Answers summary card view -->
+    <android.support.v7.widget.CardView
+        android:id="@+id/answers_summary_card_view"
+        style="@style/AnswersSummaryCardView"
+        card_view:cardCornerRadius="@dimen/standardSpacing">
+
+        <!-- Answers summary card view group -->
+        <RelativeLayout
+            android:id="@+id/answers_summary_card_inner_layout"
+            style="@style/MatchParent">
+
+            <LinearLayout
+                android:id="@+id/answers_summary_container"
+                style="@style/MatchParent"
+                android:orientation="vertical"></LinearLayout>
+
+            <!-- Reset button -->
+            <ImageButton
+                android:id="@+id/reset_button"
+                android:src="@drawable/selector_reset_button"
+                style="@style/ResetButton"
+                android:contentDescription="@string/reset_button" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchParent"
+    android:layout_margin="8dp">
+
+    <RelativeLayout style="@style/MatchParent">
+
+        <!-- Answers summary image -->
+        <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/answers_summary_image"
+            style="@style/AnswersSummaryImage"
+            app:riv_corner_radius="@dimen/standardSpacing" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/winner_info"
+                style="@style/WinnerInfo"
+                android:text="" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/player_1_score_container"
+                    style="@style/PlayerScoreContainer">
+
+                    <TextView
+                        android:id="@+id/player_1_score_label"
+                        style="@style/PlayerScoreLabel"
+                        android:text="@string/player_1_score_label" />
+
+                    <TextView
+                        android:id="@+id/player_1_points"
+                        style="@style/PlayerPoints" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/player_2_score_container"
+                    style="@style/PlayerScoreContainer">
+
+                    <TextView
+                        android:id="@+id/player_2_score_label"
+                        style="@style/PlayerScoreLabel"
+                        android:text="@string/player_1_score_label" />
+
+                    <TextView
+                        android:id="@+id/player_2_points"
+                        style="@style/PlayerPoints" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/question_expand_button_1"
+                    style="@style/QuestionExpandButton"
+                    android:text="" />
+
+                <net.cachapa.expandablelayout.ExpandableLayout
+                    android:id="@+id/question_answers_summary_1"
+                    style="@style/QuestionAnswersSummary"
+                    app:el_duration="500"
+                    app:el_expanded="false">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/summary_all_answered_answers_1_wrapper"
+                            style="@style/SummaryAllAnsweredAnswersWrapper">
+
+                            <TextView
+                                style="@style/CorrectAnswer"
+                                android:text="@string/correct_answer_label" />
+
+                            <TextView
+                                android:id="@+id/summary_all_answered_answers_1"
+                                style="@style/SummaryAllAnsweredAnswers"
+                                android:text="" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/summary_player_answers_1"
+                            style="@style/SummaryPlayerAnswers"
+                            android:layout_below="@id/summary_all_answered_answers_1_wrapper">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+                                <!-- Player 1 Correct/Wrong Answer Indicator image -->
+                                <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/answer_indicator_1_player_1"
+                                    style="@style/AnswerIndicatorImage"
+                                    android:contentDescription="@string/answer_indicator" />
+
+                                <LinearLayout
+                                    android:id="@+id/summary_answer_1_player_1_wrapper"
+                                    style="@style/SummaryAnswerPlayerWrapper">
+
+                                    <TextView
+                                        style="@style/PlayerAnswer"
+                                        android:text="@string/player_1_answer" />
+
+                                    <TextView
+                                        android:id="@+id/summary_answer_1_player_1"
+                                        style="@style/SummaryAnswerPlayer" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+                                <!-- Player 2 Correct/Wrong Answer Indicator image -->
+                                <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/answer_indicator_1_player_2"
+                                    style="@style/AnswerIndicatorImage"
+                                    android:contentDescription="@string/answer_indicator" />
+
+                                <LinearLayout
+                                    android:id="@+id/summary_answer_1_player_2_wrapper"
+                                    style="@style/SummaryAnswerPlayerWrapper">
+
+                                    <TextView
+                                        style="@style/PlayerAnswer"
+                                        android:text="@string/player_2_answer" />
+
+                                    <TextView
+                                        android:id="@+id/summary_answer_1_player_2"
+                                        style="@style/SummaryAnswerPlayer" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </net.cachapa.expandablelayout.ExpandableLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/question_expand_button_2"
+                    style="@style/QuestionExpandButton"
+                    android:text="" />
+
+                <net.cachapa.expandablelayout.ExpandableLayout
+                    android:id="@+id/question_answers_summary_2"
+                    style="@style/QuestionAnswersSummary"
+                    app:el_duration="500"
+                    app:el_expanded="false">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/summary_all_answered_answers_2_wrapper"
+                            style="@style/SummaryAllAnsweredAnswersWrapper">
+
+                            <TextView
+                                style="@style/CorrectAnswer"
+                                android:text="@string/correct_answer_label" />
+
+                            <TextView
+                                android:id="@+id/summary_all_answered_answers_2"
+                                style="@style/SummaryAllAnsweredAnswers"
+                                android:text="" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/summary_player_answers_2"
+                            style="@style/SummaryPlayerAnswers"
+                            android:layout_below="@id/summary_all_answered_answers_2_wrapper">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+                                <!-- Player 1 Correct/Wrong Answer Indicator image -->
+                                <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/answer_indicator_2_player_1"
+                                    style="@style/AnswerIndicatorImage"
+                                    android:contentDescription="@string/answer_indicator" />
+
+                                <LinearLayout
+                                    android:id="@+id/summary_answer_2_player_1_wrapper"
+                                    style="@style/SummaryAnswerPlayerWrapper">
+
+                                    <TextView
+                                        style="@style/PlayerAnswer"
+                                        android:text="@string/player_1_answer" />
+
+                                    <TextView
+                                        android:id="@+id/summary_answer_2_player_1"
+                                        style="@style/SummaryAnswerPlayer" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+                                <!-- Player 2 Correct/Wrong Answer Indicator image -->
+                                <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/answer_indicator_2_player_2"
+                                    style="@style/AnswerIndicatorImage"
+                                    android:contentDescription="@string/answer_indicator" />
+
+                                <LinearLayout
+                                    android:id="@+id/summary_answer_2_player_2_wrapper"
+                                    style="@style/SummaryAnswerPlayerWrapper">
+
+                                    <TextView
+                                        style="@style/PlayerAnswer"
+                                        android:text="@string/player_2_answer" />
+
+                                    <TextView
+                                        android:id="@+id/summary_answer_2_player_2"
+                                        style="@style/SummaryAnswerPlayer" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </net.cachapa.expandablelayout.ExpandableLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/question_expand_button_3"
+                    style="@style/QuestionExpandButton"
+                    android:text="" />
+
+                <net.cachapa.expandablelayout.ExpandableLayout
+                    android:id="@+id/question_answers_summary_3"
+                    style="@style/QuestionAnswersSummary"
+                    app:el_duration="500"
+                    app:el_expanded="false">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/summary_all_answered_answers_3_wrapper"
+                            style="@style/SummaryAllAnsweredAnswersWrapper">
+
+                            <TextView
+                                style="@style/CorrectAnswer"
+                                android:text="@string/correct_answer_label" />
+
+                            <TextView
+                                android:id="@+id/summary_all_answered_answers_3"
+                                style="@style/SummaryAllAnsweredAnswers"
+                                android:text="" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/summary_player_answers_3"
+                            style="@style/SummaryPlayerAnswers"
+                            android:layout_below="@id/summary_all_answered_answers_3_wrapper">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+                                <!-- Player 1 Correct/Wrong Answer Indicator image -->
+                                <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/answer_indicator_3_player_1"
+                                    style="@style/AnswerIndicatorImage"
+                                    android:contentDescription="@string/answer_indicator" />
+
+                                <LinearLayout
+                                    android:id="@+id/summary_answer_3_player_1_wrapper"
+                                    style="@style/SummaryAnswerPlayerWrapper">
+
+                                    <TextView
+                                        style="@style/PlayerAnswer"
+                                        android:text="@string/player_1_answer" />
+
+                                    <TextView
+                                        android:id="@+id/summary_answer_3_player_1"
+                                        style="@style/SummaryAnswerPlayer" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+                                <!-- Player 2 Correct/Wrong Answer Indicator image -->
+                                <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/answer_indicator_3_player_2"
+                                    style="@style/AnswerIndicatorImage"
+                                    android:contentDescription="@string/answer_indicator" />
+
+                                <LinearLayout
+                                    android:id="@+id/summary_answer_3_player_2_wrapper"
+                                    style="@style/SummaryAnswerPlayerWrapper">
+
+                                    <TextView
+                                        style="@style/PlayerAnswer"
+                                        android:text="@string/player_2_answer" />
+
+                                    <TextView
+                                        android:id="@+id/summary_answer_3_player_2"
+                                        style="@style/SummaryAnswerPlayer" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </net.cachapa.expandablelayout.ExpandableLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/question_expand_button_4"
+                    style="@style/QuestionExpandButton"
+                    android:text="" />
+
+                <net.cachapa.expandablelayout.ExpandableLayout
+                    android:id="@+id/question_answers_summary_4"
+                    style="@style/QuestionAnswersSummary"
+                    app:el_duration="500"
+                    app:el_expanded="false">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/summary_all_answered_answers_4_wrapper"
+                            style="@style/SummaryAllAnsweredAnswersWrapper">
+
+                            <TextView
+                                style="@style/CorrectAnswer"
+                                android:text="@string/correct_answer_label" />
+
+                            <TextView
+                                android:id="@+id/summary_all_answered_answers_4"
+                                style="@style/SummaryAllAnsweredAnswers"
+                                android:text="" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/summary_player_answers_4"
+                            style="@style/SummaryPlayerAnswers"
+                            android:layout_below="@id/summary_all_answered_answers_4_wrapper">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+                                <!-- Player 1 Correct/Wrong Answer Indicator image -->
+                                <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/answer_indicator_4_player_1"
+                                    style="@style/AnswerIndicatorImage"
+                                    android:contentDescription="@string/answer_indicator" />
+
+                                <LinearLayout
+                                    android:id="@+id/summary_answer_4_player_1_wrapper"
+                                    style="@style/SummaryAnswerPlayerWrapper">
+
+                                    <TextView
+                                        style="@style/PlayerAnswer"
+                                        android:text="@string/player_1_answer" />
+
+                                    <TextView
+                                        android:id="@+id/summary_answer_4_player_1"
+                                        style="@style/SummaryAnswerPlayer" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+                                <!-- Player 2 Correct/Wrong Answer Indicator image -->
+                                <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/answer_indicator_4_player_2"
+                                    style="@style/AnswerIndicatorImage"
+                                    android:contentDescription="@string/answer_indicator" />
+
+                                <LinearLayout
+                                    android:id="@+id/summary_answer_4_player_2_wrapper"
+                                    style="@style/SummaryAnswerPlayerWrapper">
+
+                                    <TextView
+                                        style="@style/PlayerAnswer"
+                                        android:text="@string/player_2_answer" />
+
+                                    <TextView
+                                        android:id="@+id/summary_answer_4_player_2"
+                                        style="@style/SummaryAnswerPlayer" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </net.cachapa.expandablelayout.ExpandableLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/question_expand_button_5"
+                    style="@style/QuestionExpandButton"
+                    android:text="" />
+
+                <net.cachapa.expandablelayout.ExpandableLayout
+                    android:id="@+id/question_answers_summary_5"
+                    style="@style/QuestionAnswersSummary"
+                    app:el_duration="500"
+                    app:el_expanded="false">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/summary_all_answered_answers_5_wrapper"
+                            style="@style/SummaryAllAnsweredAnswersWrapper">
+
+                            <TextView
+                                style="@style/CorrectAnswer"
+                                android:text="@string/correct_answer_label" />
+
+                            <TextView
+                                android:id="@+id/summary_all_answered_answers_5"
+                                style="@style/SummaryAllAnsweredAnswers"
+                                android:text="" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/summary_player_answers_5"
+                            style="@style/SummaryPlayerAnswers"
+                            android:layout_below="@id/summary_all_answered_answers_5_wrapper">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+                                <!-- Player 1 Correct/Wrong Answer Indicator image -->
+                                <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/answer_indicator_5_player_1"
+                                    style="@style/AnswerIndicatorImage"
+                                    android:contentDescription="@string/answer_indicator" />
+
+                                <LinearLayout
+                                    android:id="@+id/summary_answer_5_player_1_wrapper"
+                                    style="@style/SummaryAnswerPlayerWrapper">
+
+                                    <TextView
+                                        style="@style/PlayerAnswer"
+                                        android:text="@string/player_1_answer" />
+
+                                    <TextView
+                                        android:id="@+id/summary_answer_5_player_1"
+                                        style="@style/SummaryAnswerPlayer" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+                                <!-- Player 2 Correct/Wrong Answer Indicator image -->
+                                <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/answer_indicator_5_player_2"
+                                    style="@style/AnswerIndicatorImage"
+                                    android:contentDescription="@string/answer_indicator" />
+
+                                <LinearLayout
+                                    android:id="@+id/summary_answer_5_player_2_wrapper"
+                                    style="@style/SummaryAnswerPlayerWrapper">
+
+                                    <TextView
+                                        style="@style/PlayerAnswer"
+                                        android:text="@string/player_2_answer" />
+
+                                    <TextView
+                                        android:id="@+id/summary_answer_5_player_2"
+                                        style="@style/SummaryAnswerPlayer" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </net.cachapa.expandablelayout.ExpandableLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

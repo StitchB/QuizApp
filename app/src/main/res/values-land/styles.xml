@@ -19,7 +19,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">@dimen/startScreenSpacing</item>
-        <item name="android:layout_marginLeft">@dimen/standardSpacing</item>
+        <item name="android:layout_marginLeft">@dimen/tripleSpacing</item>
         <item name="android:layout_marginRight">@dimen/standardSpacing</item>
     </style>
 
@@ -28,7 +28,6 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">@dimen/selectionHeadingMargin</item>
         <item name="android:layout_marginEnd">@dimen/selectionHeadingMargin</item>
-        <item name="android:layout_marginTop">60dp</item>
         <item name="android:shadowColor">#CD222222</item>
         <item name="android:shadowDx">3</item>
         <item name="android:shadowDy">3</item>
@@ -44,7 +43,7 @@
         <item name="android:background">@android:color/transparent</item>
         <item name="android:layout_below">@id/logo</item>
         <item name="android:layout_centerHorizontal">true</item>
-        <item name="android:layout_marginTop">@dimen/startScreenSpacing</item>
+        <item name="android:layout_marginTop">-8dp</item>
     </style>
 
     <style name="StepperIndicator">
@@ -59,8 +58,7 @@
     <style name="QuestionImage">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">220dp</item>
-        <item name="android:layout_below">@id/main_heading</item>
-        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:layout_marginTop">@dimen/doubleSpacing</item>
         <item name="android:layout_marginLeft">@dimen/doubleSpacing</item>
         <item name="android:layout_marginRight">@dimen/doubleSpacing</item>
         <item name="android:src">@drawable/question_1</item>
@@ -70,9 +68,9 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginTop">@dimen/tripleSpacing</item>
         <item name="android:layout_marginLeft">@dimen/doubleSpacing</item>
         <item name="android:layout_marginRight">@dimen/doubleSpacing</item>
-        <item name="android:layout_below">@id/question_image</item>
         <item name="android:textColor">@color/colorSecondary</item>
     </style>
 
@@ -150,10 +148,9 @@
     <style name="NextQuestionContinue">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_alignParentBottom">true</item>
-        <item name="android:layout_centerHorizontal">true</item>
-        <item name="android:layout_marginTop">@dimen/startScreenSpacing</item>
-        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">@dimen/doubleSpacing</item>
+        <item name="android:layout_marginBottom">@dimen/tripleSpacing</item>
         <item name="android:layout_marginLeft">@dimen/nextButtonHorizontalMargin</item>
         <item name="android:layout_marginRight">@dimen/nextButtonHorizontalMargin</item>
         <item name="android:background">@android:color/transparent</item>

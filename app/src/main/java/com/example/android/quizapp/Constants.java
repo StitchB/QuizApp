@@ -2,6 +2,20 @@ package com.example.android.quizapp;
 
 interface Constants {
 
+    //Used to keep activity state
+    String STATE_RANDOM_QUESTION_NUMBER = "randomQuestionNumber";
+    String STATE_ALL_SELECTED_ANSWERS = "allSelectedAnswers";
+    String STATE_ALREADY_USED_QUESTIONS = "alreadyUsedQuestions";
+    String STATE_QUESTIONS_TO_USE = "questionsToUse";
+    String STATE_QUIZ_LAST_QUESTION_TYPE = "quizLastQuestionType";
+    String STATE_SUMMARY_CURRENT_QUESTION_TYPE = "summaryCurrentQuestionType";
+    String STATE_CURRENT_PLAYER = "currentPlayer";
+    String STATE_CURRENT_QUESTION = "currentQuestion";
+    String STATE_ANSWERS_TOTAL = "answersTotal";
+    String STATE_PLAYER_1_CORRECT_ANSWERS = "player1CorrectAnswers";
+    String STATE_PLAYER_2_CORRECT_ANSWERS = "player2CorrectAnswers";
+    String STATE_ON_CREATE_QUESTION_GENERATED = "onCreateQuestionGenerated";
+
     //Hashmap keys
     String QUESTION_KEY_QUESTION = "question";
     String QUESTION_KEY_ANSWER_1 = "answer_1";

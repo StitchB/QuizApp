@@ -19,16 +19,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
-
 import net.cachapa.expandablelayout.ExpandableLayout;
-
 import com.badoualy.stepperindicator.StepperIndicator;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
@@ -49,6 +46,9 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
             "47", "48", "49", "50", "52"};
     private final String[] multipleChoiceCheckboxQuestions = {"11", "15", "16", "18", "22", "24", "29", "34", "44", "54", "55"};
     private final String[] singleAnswerTextQuestions = {"12", "14", "19", "21", "27", "32", "38", "40", "42", "45", "51", "53"};
+
+    //Current random question number
+    private String randomQuestionNumber;
 
     //Total questions count
     private final int questionsCount = 55;
@@ -94,6 +94,9 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
 
     //Stepper indicator
     private StepperIndicator stepperIndicator;
+
+    //Restored instance state flag
+    private Boolean restoredInstanceState = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,11 +157,89 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
         //Set questions and the corresponding answers
         setQuestionsData();
 
-        //Get random question
-        getRandomQuestion(true);
+        //Restore instance state
+        if (savedInstanceState != null) {
+            restoreInstanceState(savedInstanceState);
+        }
 
-        //Show 'Next Player' view before first question
-        showNextPlayerView(true);
+        //If not restored instance state
+        if(!restoredInstanceState) {
+            //Get random question
+            getRandomQuestion(true);
+        } else {
+            //Get question info
+            getQuestionInfo();
+
+            //Show summary if all question answered already
+            if (answersTotal == Constants.MAX_ANSWERS) {
+                //Hide 'Continue' button
+                buttonContinue.setVisibility(View.INVISIBLE);
+
+                //Inflate 'Answers Summary'
+                inflateSummary();
+            }
+        }
+
+        //If not restored instance state
+        if(!restoredInstanceState) {
+            //Show 'Next Player' view before first question
+            showNextPlayerView(true);
+        }
+
+        //Set restoredInstanceState flag to false
+        restoredInstanceState = false;
+    }
+
+    /**
+     * Save instance state
+     *
+     * @param savedInstanceState - Saved instance state
+     */
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        //Save the state
+        savedInstanceState.putString(Constants.STATE_RANDOM_QUESTION_NUMBER, randomQuestionNumber);
+        savedInstanceState.putSerializable(Constants.STATE_ALL_SELECTED_ANSWERS, allSelectedAnswers);
+        savedInstanceState.putStringArrayList(Constants.STATE_ALREADY_USED_QUESTIONS, alreadyUsedQuestions);
+        savedInstanceState.putStringArrayList(Constants.STATE_QUESTIONS_TO_USE, questionsToUse);
+        savedInstanceState.putString(Constants.STATE_QUIZ_LAST_QUESTION_TYPE, quizLastQuestionType);
+        savedInstanceState.putString(Constants.STATE_SUMMARY_CURRENT_QUESTION_TYPE, summaryCurrentQuestionType);
+        savedInstanceState.putInt(Constants.STATE_CURRENT_PLAYER, currentPlayer);
+        savedInstanceState.putInt(Constants.STATE_CURRENT_QUESTION, currentQuestion);
+        savedInstanceState.putInt(Constants.STATE_ANSWERS_TOTAL, answersTotal);
+        savedInstanceState.putInt(Constants.STATE_PLAYER_1_CORRECT_ANSWERS, player1CorrectAnswers);
+        savedInstanceState.putInt(Constants.STATE_PLAYER_2_CORRECT_ANSWERS, player2CorrectAnswers);
+        savedInstanceState.putBoolean(Constants.STATE_ON_CREATE_QUESTION_GENERATED, onCreateQuestionGenerated);
+
+        //Call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    /**
+     * Restore instance state
+     *
+     * @param savedInstanceState - Saved instance state
+     */
+    public void restoreInstanceState(Bundle savedInstanceState) {
+        //Set restoredInstanceState flag to false
+        restoredInstanceState = true;
+
+        //Restore the state from saved instance
+        randomQuestionNumber = savedInstanceState.getString(Constants.STATE_RANDOM_QUESTION_NUMBER);
+        allSelectedAnswers = (HashMap<String, HashMap<String, String>>) savedInstanceState.getSerializable(Constants.STATE_ALL_SELECTED_ANSWERS);
+        alreadyUsedQuestions = savedInstanceState.getStringArrayList(Constants.STATE_ALREADY_USED_QUESTIONS);
+        questionsToUse = savedInstanceState.getStringArrayList(Constants.STATE_QUESTIONS_TO_USE);
+        quizLastQuestionType = savedInstanceState.getString(Constants.STATE_QUIZ_LAST_QUESTION_TYPE);
+        summaryCurrentQuestionType = savedInstanceState.getString(Constants.STATE_SUMMARY_CURRENT_QUESTION_TYPE);
+        currentPlayer = savedInstanceState.getInt(Constants.STATE_CURRENT_PLAYER);
+        currentQuestion = savedInstanceState.getInt(Constants.STATE_CURRENT_QUESTION);
+        answersTotal = savedInstanceState.getInt(Constants.STATE_ANSWERS_TOTAL);
+        player1CorrectAnswers = savedInstanceState.getInt(Constants.STATE_PLAYER_1_CORRECT_ANSWERS);
+        player2CorrectAnswers = savedInstanceState.getInt(Constants.STATE_PLAYER_2_CORRECT_ANSWERS);
+        onCreateQuestionGenerated = savedInstanceState.getBoolean(Constants.STATE_ON_CREATE_QUESTION_GENERATED);
+
+        //Set main heading text
+        setMainHeadingText(true);
     }
 
     /**
@@ -398,8 +479,10 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
         //Make sure that question elements are not available until 'Reset' button is clicked
         disableQuestionElements();
 
-        //Show final Toast message
-        showToast(finalToastMessage, true, FancyToast.SUCCESS);
+        //If not restored instance state
+        if(!restoredInstanceState) {
+            showToast(finalToastMessage, true, FancyToast.SUCCESS);
+        }
     }
 
     /**
@@ -519,12 +602,15 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
                 break;
         }
 
-        //Count correct answers for each player
-        if (answerIsCorrect) {
-            if (Objects.equals(playerNumber, "1")) {
-                player1CorrectAnswers++;
-            } else {
-                player2CorrectAnswers++;
+        //If not restored instance state
+        if(!restoredInstanceState) {
+            //Count correct answers for each player
+            if (answerIsCorrect) {
+                if (Objects.equals(playerNumber, "1")) {
+                    player1CorrectAnswers++;
+                } else {
+                    player2CorrectAnswers++;
+                }
             }
         }
 
@@ -572,27 +658,6 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
 
         //Return prepared string
         return oneStringPlayerAnswers.toString();
-    }
-
-    /**
-     * Save instance state
-     *
-     * @param savedInstanceState - Saved instance state
-     */
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        //Call the superclass so it can save the view hierarchy state
-        super.onSaveInstanceState(savedInstanceState);
-    }
-
-    /**
-     * Restore instance state
-     *
-     * @param savedInstanceState - Saved instance state
-     */
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
-        //Call the superclass so it can restore the view hierarchy
-        super.onRestoreInstanceState(savedInstanceState);
     }
 
     /**
@@ -665,6 +730,9 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
     private void confirmAndGenerateQuestion() {
         //If question has been answered
         if (questionAnswered()) {
+            //Increment answers total
+            answersTotal++;
+
             //Show summary if all question answered already
             if (answersTotal == Constants.MAX_ANSWERS) {
                 //Hide 'Continue' button
@@ -701,7 +769,7 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
                 int randomIndex = generator.nextInt(questionsToUse.size());
 
                 //Get question number
-                String randomQuestionNumber = questionsToUse.get(randomIndex);
+                randomQuestionNumber = questionsToUse.get(randomIndex);
 
                 //Add question into already used questions array list
                 alreadyUsedQuestions.add(randomQuestionNumber);
@@ -709,46 +777,8 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
                 //Make sure that the same question can be used only once
                 questionsToUse.remove(randomIndex);
 
-                //Set question text
-                questionView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_QUESTION)));
-
-                //Show question image
-                int questionImageId = getResources().getIdentifier("question_" + randomQuestionNumber, "drawable", getPackageName());
-                ImageView questionImageView = findViewById(R.id.question_image);
-                questionImageView.setImageResource(questionImageId);
-
-                //Handle answer elements visibility
-                //If single choice radio question
-                answerRadiosView.setVisibility(View.GONE);
-                answerCheckboxesView.setVisibility(View.GONE);
-                answerEditTextView.setVisibility(View.GONE);
-                if (Arrays.asList(singleChoiceRadioQuestions).contains(randomQuestionNumber)) {
-                    quizLastQuestionType = Constants.QUESTION_ANSWER_TYPE_SINGLE_CHOICE_RADIO;
-
-                    answerRadiosView.setVisibility(View.VISIBLE);
-
-                    answer1RadioView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_1)));
-                    answer2RadioView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_2)));
-                    answer3RadioView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_3)));
-                    answer4RadioView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_4)));
-                }
-                //If multi choice checkbox question
-                else if (Arrays.asList(multipleChoiceCheckboxQuestions).contains(randomQuestionNumber)) {
-                    quizLastQuestionType = Constants.QUESTION_ANSWER_TYPE_MULTIPLE_CHOICE_CHECKBOXES;
-
-                    answerCheckboxesView.setVisibility(View.VISIBLE);
-
-                    answer1CheckBoxView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_1)));
-                    answer2CheckBoxView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_2)));
-                    answer3CheckBoxView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_3)));
-                    answer4CheckBoxView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_4)));
-                }
-                //If single answer text question
-                else if (Arrays.asList(singleAnswerTextQuestions).contains(randomQuestionNumber)) {
-                    quizLastQuestionType = Constants.QUESTION_ANSWER_TYPE_SINGLE_ANSWER_TEXT;
-
-                    answerEditTextView.setVisibility(View.VISIBLE);
-                }
+                //Get question info
+                getQuestionInfo();
 
                 //Change 'stepper' step
                 stepperIndicator.setCurrentStep(currentQuestion - 1);
@@ -762,19 +792,72 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
             answer4CheckBoxView.setChecked(false);
             answerEditTextView.setText("");
 
-            //Update main heading
-            mainHeadingView.setText(getString(R.string.current_player, currentPlayer, currentQuestion));
+            //Set main heading text
+            setMainHeadingText(false);
 
             //Change player
             currentPlayer = currentPlayer == 1 ? 2 : 1;
-
-            //Increment answers total
-            answersTotal++;
         }
 
-        //Update onCreateQuestionGenerated flag if question is generated on creation
-        if (onCreate) {
+        //Update onCreateQuestionGenerated flag if question is generated on creation & restoredInstanceState is false
+        if (onCreate && !restoredInstanceState) {
             onCreateQuestionGenerated = true;
+        }
+    }
+
+    /**
+     * Set main heading text
+     *
+     * @param switchPlayer - switch player flag [boolean]
+     */
+    private void setMainHeadingText(Boolean switchPlayer) {
+        //Update main heading
+        mainHeadingView.setText(getString(R.string.current_player, (switchPlayer ? (currentPlayer == 1 ? 2 : 1) : currentPlayer), currentQuestion));
+    }
+
+    /**
+     * Get question info
+     */
+    private void getQuestionInfo() {
+        //Set question text
+        questionView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_QUESTION)));
+
+        //Show question image
+        int questionImageId = getResources().getIdentifier("question_" + randomQuestionNumber, "drawable", getPackageName());
+        ImageView questionImageView = findViewById(R.id.question_image);
+        questionImageView.setImageResource(questionImageId);
+
+        //Handle answer elements visibility
+        //If single choice radio question
+        answerRadiosView.setVisibility(View.GONE);
+        answerCheckboxesView.setVisibility(View.GONE);
+        answerEditTextView.setVisibility(View.GONE);
+        if (Arrays.asList(singleChoiceRadioQuestions).contains(randomQuestionNumber)) {
+            quizLastQuestionType = Constants.QUESTION_ANSWER_TYPE_SINGLE_CHOICE_RADIO;
+
+            answerRadiosView.setVisibility(View.VISIBLE);
+
+            answer1RadioView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_1)));
+            answer2RadioView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_2)));
+            answer3RadioView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_3)));
+            answer4RadioView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_4)));
+        }
+        //If multi choice checkbox question
+        else if (Arrays.asList(multipleChoiceCheckboxQuestions).contains(randomQuestionNumber)) {
+            quizLastQuestionType = Constants.QUESTION_ANSWER_TYPE_MULTIPLE_CHOICE_CHECKBOXES;
+
+            answerCheckboxesView.setVisibility(View.VISIBLE);
+
+            answer1CheckBoxView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_1)));
+            answer2CheckBoxView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_2)));
+            answer3CheckBoxView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_3)));
+            answer4CheckBoxView.setText(String.valueOf(questions.get(randomQuestionNumber).get(Constants.QUESTION_KEY_ANSWER_4)));
+        }
+        //If single answer text question
+        else if (Arrays.asList(singleAnswerTextQuestions).contains(randomQuestionNumber)) {
+            quizLastQuestionType = Constants.QUESTION_ANSWER_TYPE_SINGLE_ANSWER_TEXT;
+
+            answerEditTextView.setVisibility(View.VISIBLE);
         }
     }
 
