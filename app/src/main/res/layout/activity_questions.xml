@@ -9,7 +9,6 @@
     <!-- Main background -->
     <ImageView
         android:id="@+id/background"
-        android:src="@drawable/bg2"
         style="@style/MainBackground"
         android:contentDescription="@string/background" />
 
@@ -36,8 +35,7 @@
     <!-- Question Text -->
     <TextView
         android:id="@+id/question"
-        style="@style/Question"
-        android:text="@string/question_1_label" />
+        style="@style/Question" />
 
     <!-- Answers -->
     <ScrollView
@@ -137,7 +135,6 @@
             <!-- Next player button -->
             <ImageButton
                 android:id="@+id/next_player_continue"
-                android:src="@drawable/selector_continue_button"
                 style="@style/NextPlayerContinue"
                 android:contentDescription="@string/continue_button" />
 
@@ -163,7 +160,6 @@
             <!-- Reset button -->
             <ImageButton
                 android:id="@+id/reset_button"
-                android:src="@drawable/selector_reset_button"
                 style="@style/ResetButton"
                 android:contentDescription="@string/reset_button" />
 

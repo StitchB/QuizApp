@@ -50,7 +50,7 @@
                     <TextView
                         android:id="@+id/player_2_score_label"
                         style="@style/PlayerScoreLabel"
-                        android:text="@string/player_1_score_label" />
+                        android:text="@string/player_2_score_label" />
 
                     <TextView
                         android:id="@+id/player_2_points"

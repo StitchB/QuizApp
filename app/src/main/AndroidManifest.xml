@@ -7,9 +7,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:hardwareAccelerated="false"
         android:largeHeap="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".MainActivity"/>
         <activity
             android:name=".StartScreenActivity">
             <intent-filter>
@@ -19,5 +20,8 @@
         </activity>
         <activity
             android:name=".QuestionsActivity"/>
+
+        <meta-data android:name="com.example.android.quizapp.GlideConfiguration"
+            android:value="AppGlideModule"/>
     </application>
 </manifest>
