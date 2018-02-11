@@ -4,14 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,7 +26,7 @@ import net.cachapa.expandablelayout.ExpandableLayout;
 import com.badoualy.stepperindicator.StepperIndicator;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
-public class QuestionsActivity extends AppCompatActivity implements OnClickListener {
+public class QuestionsActivity extends MainActivity implements OnClickListener {
 
     //Current context
     private Context context;
@@ -103,14 +100,15 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
         //Call super class implementation of onCreate method
         super.onCreate(savedInstanceState);
 
-        //Hide action bar
-        hideActionBar();
-
         //Set 'activity_questions' as a main design file
         setContentView(R.layout.activity_questions);
 
         //Set application context
         context = getApplicationContext();
+
+        //Background
+        ImageView background = findViewById(R.id.background);
+        loadGlideImage(context, R.drawable.bg2, background);
 
         //Main heading
         mainHeadingView = findViewById(R.id.main_heading);
@@ -148,10 +146,23 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
             questionsToUse.add(String.valueOf(i));
         }
 
-        //'Continue' button image
+        //Main continue button
         buttonContinue = findViewById(R.id.button_continue);
+        loadGlideImage(context, R.drawable.selector_continue_button, buttonContinue);
 
-        //Set on click listener event for button
+        //'Next Player' continue button
+        ImageView buttonNextPlayer = findViewById(R.id.next_player_continue);
+        loadGlideImage(context, R.drawable.selector_continue_button, buttonNextPlayer);
+
+        //Summary 'Reset' continue button
+        ImageView buttonReset = findViewById(R.id.reset_button);
+        loadGlideImage(context, R.drawable.selector_reset_button, buttonReset);
+
+        //'Next Player' image
+        ImageView nextPlayerImage = findViewById(R.id.next_player_image);
+        loadGlideImage(context, R.drawable.next_player, nextPlayerImage);
+
+        //Set on click listener event for the continue button
         buttonContinue.setOnClickListener(this);
 
         //Set questions and the corresponding answers
@@ -474,14 +485,14 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
 
         //Insert all into main view
         ViewGroup insertPoint = findViewById(R.id.answers_summary_container);
-        insertPoint.addView(rootView, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        insertPoint.addView(rootView,0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
         //Make sure that question elements are not available until 'Reset' button is clicked
         disableQuestionElements();
 
         //If not restored instance state
         if(!restoredInstanceState) {
-            showToast(finalToastMessage, true, FancyToast.SUCCESS);
+            showToast(finalToastMessage,true, FancyToast.SUCCESS);
         }
     }
 
@@ -621,37 +632,37 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
         if (Objects.equals(playerNumber, "1")) {
             switch (questionCounter) {
                 case 1:
-                    indicatorQuestion1Player1.setImageResource(indicatorId);
+                    loadGlideImage(context, indicatorId, indicatorQuestion1Player1);
                     break;
                 case 2:
-                    indicatorQuestion2Player1.setImageResource(indicatorId);
+                    loadGlideImage(context, indicatorId, indicatorQuestion2Player1);
                     break;
                 case 3:
-                    indicatorQuestion3Player1.setImageResource(indicatorId);
+                    loadGlideImage(context, indicatorId, indicatorQuestion3Player1);
                     break;
                 case 4:
-                    indicatorQuestion4Player1.setImageResource(indicatorId);
+                    loadGlideImage(context, indicatorId, indicatorQuestion4Player1);
                     break;
                 case 5:
-                    indicatorQuestion5Player1.setImageResource(indicatorId);
+                    loadGlideImage(context, indicatorId, indicatorQuestion5Player1);
                     break;
             }
         } else {
             switch (questionCounter) {
                 case 1:
-                    indicatorQuestion1Player2.setImageResource(indicatorId);
+                    loadGlideImage(context, indicatorId, indicatorQuestion1Player2);
                     break;
                 case 2:
-                    indicatorQuestion2Player2.setImageResource(indicatorId);
+                    loadGlideImage(context, indicatorId, indicatorQuestion2Player2);
                     break;
                 case 3:
-                    indicatorQuestion3Player2.setImageResource(indicatorId);
+                    loadGlideImage(context, indicatorId, indicatorQuestion3Player2);
                     break;
                 case 4:
-                    indicatorQuestion4Player2.setImageResource(indicatorId);
+                    loadGlideImage(context, indicatorId, indicatorQuestion4Player2);
                     break;
                 case 5:
-                    indicatorQuestion5Player2.setImageResource(indicatorId);
+                    loadGlideImage(context, indicatorId, indicatorQuestion5Player2);
                     break;
             }
         }
@@ -825,7 +836,7 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
         //Show question image
         int questionImageId = getResources().getIdentifier("question_" + randomQuestionNumber, "drawable", getPackageName());
         ImageView questionImageView = findViewById(R.id.question_image);
-        questionImageView.setImageResource(questionImageId);
+        loadGlideImage(context, questionImageId, questionImageView);
 
         //Handle answer elements visibility
         //If single choice radio question
@@ -1419,14 +1430,5 @@ public class QuestionsActivity extends AppCompatActivity implements OnClickListe
         correctAnswer.add(3);
         correctAnswer.add(4);
         answers.put("55", correctAnswer);
-    }
-
-    /**
-     * Hide action bar
-     */
-    private void hideActionBar() {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 }

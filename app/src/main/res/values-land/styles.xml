@@ -16,8 +16,8 @@
     </style>
 
     <style name="MainLogo">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">390dp</item>
+        <item name="android:layout_height">256dp</item>
         <item name="android:layout_marginTop">@dimen/startScreenSpacing</item>
         <item name="android:layout_marginLeft">@dimen/tripleSpacing</item>
         <item name="android:layout_marginRight">@dimen/standardSpacing</item>
@@ -38,12 +38,11 @@
     </style>
 
     <style name="StartScreenContinueButton">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">132dp</item>
+        <item name="android:layout_height">34dp</item>
         <item name="android:background">@android:color/transparent</item>
         <item name="android:layout_below">@id/logo</item>
         <item name="android:layout_centerHorizontal">true</item>
-        <item name="android:layout_marginTop">-8dp</item>
     </style>
 
     <style name="StepperIndicator">
@@ -61,7 +60,6 @@
         <item name="android:layout_marginTop">@dimen/doubleSpacing</item>
         <item name="android:layout_marginLeft">@dimen/doubleSpacing</item>
         <item name="android:layout_marginRight">@dimen/doubleSpacing</item>
-        <item name="android:src">@drawable/question_1</item>
     </style>
 
     <style name="Question">
@@ -132,7 +130,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_alignParentBottom">true</item>
         <item name="android:layout_centerHorizontal">true</item>
-        <item name="android:layout_marginTop">@dimen/startScreenSpacing</item>
+        <item name="android:layout_marginTop">@dimen/nextPlayerContinueMarginTop</item>
         <item name="android:layout_marginBottom">@dimen/nextPlayerContinueMarginBottom</item>
         <item name="android:layout_marginLeft">@dimen/nextButtonHorizontalMargin</item>
         <item name="android:layout_marginRight">@dimen/nextButtonHorizontalMargin</item>
@@ -176,7 +174,6 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:contentDescription">@string/next_player</item>
-        <item name="android:src">@drawable/next_player</item>
     </style>
 
     <style name="NextPlayerInfo">
@@ -218,7 +215,6 @@
     <style name="AnswerIndicatorImage">
         <item name="android:layout_width">@dimen/doubleSpacing</item>
         <item name="android:layout_height">@dimen/doubleSpacing</item>
-        <item name="android:src">@drawable/indicator_wrong_answer</item>
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_marginBottom">@dimen/standardSpacing</item>
         <item name="android:layout_marginLeft">@dimen/standardSpacing</item>
