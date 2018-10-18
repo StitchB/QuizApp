@@ -1,6 +1,6 @@
 # Quiz App
 
-Project #3 for Google Developer Challenge Scholarship: Android Basics
+Project #3 for Google Developer Challenge Scholarship: Android Basics / Android Basics by Google Nanodegree Program
 
 <h3>Layout</h3>
 <table>
